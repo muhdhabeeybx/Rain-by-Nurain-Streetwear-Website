@@ -1,0 +1,22 @@
+{
+  "name": "Rain by Nurain (RBN)",
+  "short_name": "RBN",
+  "description": "Bold streetwear for Gen Z - Left Home to Feed Home",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#030213",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/rbn-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/rbn-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
