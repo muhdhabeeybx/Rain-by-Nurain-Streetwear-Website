@@ -28,10 +28,10 @@ export function HeroSection() {
           className="hero-section mobile-keep-center"
         >
           <h1 className="font-heading text-[56px] md:text-6xl lg:text-7xl mb-8 leading-tight tracking-tight">
-            Left Home to Feed Home
+            For the Dreamers & Hustlers Who Wear Their Story Like a Crown
           </h1>
           <p className="font-body text-lg md:text-xl mb-12 max-w-2xl mx-auto leading-relaxed text-white/90">
-            Discover our latest collection of premium streetwear that tells your story
+            Rain by Nurain is more than streetwear — it’s a movement stitched from hustle, pride, and culture./nMade for the fearless. Designed for the rooted.
           </p>
           
           <motion.div
@@ -45,7 +45,7 @@ export function HeroSection() {
               onClick={scrollToNewArrivals}
               className="bg-white text-black hover:bg-gray-100 font-normal tracking-wide px-8 py-3 text-sm uppercase mx-auto mobile-keep-center transition-all duration-200"
             >
-              Shop Now
+              Discover the Collection
             </Button>
           </motion.div>
         </motion.div>
