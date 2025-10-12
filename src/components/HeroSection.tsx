@@ -12,9 +12,9 @@ export function HeroSection() {
 
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden">
-      {/* Image is used directly in the src */}
+      {/* Hero image */}
       <img
-        src="/assets/imgi_33_533040467_17979912017897537_2832001808335756736_n.jpeg"
+        src="/imgi_5_534163430_1308784940600142_2043372202433117803_n.jpeg"
         alt="Rain by Nurain hero"
         className="absolute inset-0 w-full h-full object-cover z-0"
         draggable={false}
