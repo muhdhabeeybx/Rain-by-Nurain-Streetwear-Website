@@ -14,7 +14,7 @@ export function HeroSection() {
     <section className="relative h-screen flex items-center justify-center overflow-hidden">
       {/* Hero image */}
       <img
-        src="/imgi_5_534163430_1308784940600142_2043372202433117803_n.jpeg"
+        src="/rbnhero.png"
         alt="Rain by Nurain hero"
         className="absolute inset-0 w-full h-full object-cover z-0"
         draggable={false}
