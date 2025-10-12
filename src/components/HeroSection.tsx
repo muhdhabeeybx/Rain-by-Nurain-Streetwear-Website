@@ -1,8 +1,8 @@
 import React from 'react';
 import { Button } from './ui/button';
 import { motion } from 'framer-motion';
-// Use your local image in public folder or import if using webpack
-const heroImage = 'src/imgi_5_534163430_1308784940600142_2043372202433117803_n.jpeg';
+
+const heroImage = '/imgi_5_534163430_1308784940600142_2043372202433117803_n.jpeg';
 
 export function HeroSection() {
   const scrollToNewArrivals = () => {
@@ -19,7 +19,6 @@ export function HeroSection() {
     >
       {/* Premium Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/30 to-transparent"></div>
-      {/* Subtle Blur Behind Content */}
       <div className="absolute inset-0 backdrop-blur-[2px]"></div>
 
       {/* Content */}
@@ -46,8 +45,8 @@ export function HeroSection() {
             <Button
               size="lg"
               onClick={scrollToNewArrivals}
-              className="bg-white text-black font-semibold rounded-full shadow-lg hover:bg-gray-100 hover:scale-105 transition-all duration-200 px-6 py-4 text-base uppercase tracking-wide"
-              // px-6 (24px left/right), py-4 (16px top/bottom)
+              className="bg-white text-black font-semibold rounded-lg shadow-lg hover:bg-gray-100 hover:scale-105 transition-all duration-200 px-6 py-4 text-base uppercase tracking-wide"
+              // px-6 (24px left/right), py-4 (16px top/bottom), rounded-lg for slightly rounded corners
             >
               Discover the Collection
             </Button>
