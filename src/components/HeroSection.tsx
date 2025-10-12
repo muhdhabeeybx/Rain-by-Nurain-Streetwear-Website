@@ -13,16 +13,21 @@ export function HeroSection() {
   };
 
   return (
-    <section
-      className="relative h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat"
-      style={{ backgroundImage: `url(${heroImage})` }}
-    >
+    <section className="relative h-screen flex items-center justify-center overflow-hidden">
+      {/* Hero Image */}
+      <img
+        src={heroImage}
+        alt="Rain by Nurain hero"
+        className="absolute inset-0 w-full h-full object-cover z-0"
+        draggable={false}
+        loading="eager"
+      />
       {/* Premium Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/30 to-transparent"></div>
-      <div className="absolute inset-0 backdrop-blur-[2px]"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/30 to-transparent z-10"></div>
+      <div className="absolute inset-0 backdrop-blur-[2px] z-10"></div>
 
       {/* Content */}
-      <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto flex flex-col items-center hero-content mobile-keep-center">
+      <div className="relative z-20 text-center text-white px-4 max-w-4xl mx-auto flex flex-col items-center hero-content mobile-keep-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -35,7 +40,6 @@ export function HeroSection() {
           <p className="font-body text-lg md:text-xl mb-12 max-w-2xl mx-auto leading-relaxed text-white/90 drop-shadow">
             Rain by Nurain is more than streetwear — it’s a movement stitched from hustle, pride, and culture.
           </p>
-
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -46,7 +50,6 @@ export function HeroSection() {
               size="lg"
               onClick={scrollToNewArrivals}
               className="bg-white text-black font-semibold rounded-lg shadow-lg hover:bg-gray-100 hover:scale-105 transition-all duration-200 px-6 py-4 text-base uppercase tracking-wide"
-              // px-6 (24px left/right), py-4 (16px top/bottom), rounded-lg for slightly rounded corners
             >
               Discover the Collection
             </Button>
@@ -56,7 +59,7 @@ export function HeroSection() {
 
       {/* Scroll indicator */}
       <motion.div
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white/80"
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white/80 z-20"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1, duration: 0.5 }}
