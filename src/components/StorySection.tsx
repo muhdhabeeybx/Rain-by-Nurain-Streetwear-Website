@@ -74,7 +74,7 @@ export function StorySection() {
             transition={{ duration: 0.8 }}
             className="text-center mobile-keep-center border-t border-gray-200 pt-16"
           >
-            <blockquote className="font-heading text-xl md:text-2xl lg:text-3xl leading-[1em] mb-8 max-w-4xl mx-auto text-gray-800 italic">
+            <blockquote className="font-heading text-xl md:text-2xl lg:text-3xl leading-[1em] mb-8 max-w-4xl mx-auto text-gray-800">
               "Fashion is not just about what you wear—it's about who you become when you wear it."
             </blockquote>
             <div className="flex items-center justify-center gap-4 mobile-keep-center">
