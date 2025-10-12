@@ -28,10 +28,10 @@ export function HeroSection() {
           className="hero-section mobile-keep-center"
         >
           <h1 className="font-heading text-[56px] md:text-6xl lg:text-7xl mb-8 leading-tight tracking-tight">
-            For the Dreamers & Hustlers Who Wear Their Story Like a Crown
+            For the Dreamers & Hustlers
           </h1>
           <p className="font-body text-lg md:text-xl mb-12 max-w-2xl mx-auto leading-relaxed text-white/90">
-            Rain by Nurain is more than streetwear — it’s a movement stitched from hustle, pride, and culture./nMade for the fearless. Designed for the rooted.
+            Rain by Nurain is more than streetwear — it’s a movement stitched from hustle, pride, and culture.
           </p>
           
           <motion.div
