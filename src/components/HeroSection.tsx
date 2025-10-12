@@ -2,8 +2,6 @@ import React from 'react';
 import { Button } from './ui/button';
 import { motion } from 'framer-motion';
 
-const heroImage = '/imgi_5_534163430_1308784940600142_2043372202433117803_n.jpeg';
-
 export function HeroSection() {
   const scrollToNewArrivals = () => {
     const newArrivalsSection = document.getElementById('new-arrivals');
@@ -14,9 +12,9 @@ export function HeroSection() {
 
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden">
-      {/* Hero Image */}
+      {/* Image is used directly in the src */}
       <img
-        src={heroImage}
+        src="/imgi_5_534163430_1308784940600142_2043372202433117803_n.jpeg" // Direct path to image in public folder
         alt="Rain by Nurain hero"
         className="absolute inset-0 w-full h-full object-cover z-0"
         draggable={false}
