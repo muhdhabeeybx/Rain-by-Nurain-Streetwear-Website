@@ -1,7 +1,8 @@
 import React from 'react';
 import { Button } from './ui/button';
 import { motion } from 'framer-motion';
-const heroImage = 'https://images.unsplash.com/photo-1580172275379-bf8077ea5b5f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdHJlZXR3ZWFyJTIwZmFzaGlvbiUyMGJsYWNrJTIwdXJiYW58ZW58MXx8fHwxNzU5MjM3OTY0fDA&ixlib=rb-4.1.0&q=80&w=1080';
+// Use your local image in public folder or import if using webpack
+const heroImage = 'src/imgi_5_534163430_1308784940600142_2043372202433117803_n.jpeg';
 
 export function HeroSection() {
   const scrollToNewArrivals = () => {
@@ -12,47 +13,50 @@ export function HeroSection() {
   };
 
   return (
-    <section 
+    <section
       className="relative h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat"
       style={{ backgroundImage: `url(${heroImage})` }}
     >
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-black/40"></div>
-      
+      {/* Premium Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/30 to-transparent"></div>
+      {/* Subtle Blur Behind Content */}
+      <div className="absolute inset-0 backdrop-blur-[2px]"></div>
+
       {/* Content */}
-      <div className="relative z-10 text-center text-white px-4 max-w-5xl mx-auto hero-content mobile-keep-center">
+      <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto flex flex-col items-center hero-content mobile-keep-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="hero-section mobile-keep-center"
+          className="w-full"
         >
-          <h1 className="font-heading text-[56px] md:text-6xl lg:text-7xl mb-8 leading-tight tracking-tight">
+          <h1 className="font-heading text-[46px] md:text-6xl lg:text-7xl mb-8 leading-tight tracking-tight drop-shadow-xl">
             For the Dreamers & Hustlers
           </h1>
-          <p className="font-body text-lg md:text-xl mb-12 max-w-2xl mx-auto leading-relaxed text-white/90">
+          <p className="font-body text-lg md:text-xl mb-12 max-w-2xl mx-auto leading-relaxed text-white/90 drop-shadow">
             Rain by Nurain is more than streetwear — it’s a movement stitched from hustle, pride, and culture.
           </p>
-          
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="mobile-keep-center"
+            className="w-full flex justify-center"
           >
             <Button
-              size="sm"
+              size="lg"
               onClick={scrollToNewArrivals}
-              className="bg-white text-black hover:bg-gray-100 font-normal tracking-wide px-8 py-3 text-sm uppercase mx-auto mobile-keep-center transition-all duration-200"
+              className="bg-white text-black font-semibold rounded-full shadow-lg hover:bg-gray-100 hover:scale-105 transition-all duration-200 px-6 py-4 text-base uppercase tracking-wide"
+              // px-6 (24px left/right), py-4 (16px top/bottom)
             >
               Discover the Collection
             </Button>
           </motion.div>
         </motion.div>
       </div>
-      
+
       {/* Scroll indicator */}
-      <motion.div 
+      <motion.div
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white/80"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -60,7 +64,7 @@ export function HeroSection() {
       >
         <div className="flex flex-col items-center">
           <p className="text-xs uppercase tracking-wider mb-2 font-body">Scroll</p>
-          <div className="w-px h-8 bg-white/50"></div>
+          <div className="w-px h-8 bg-white/50 rounded"></div>
         </div>
       </motion.div>
     </section>
