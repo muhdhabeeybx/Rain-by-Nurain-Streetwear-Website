@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from './ui/button';
 import { motion } from 'framer-motion';
-const heroImage = '/assets/rbnhero.png';
+const heroImage = '/rbnhero.png';
 
 export function HeroSection() {
   const scrollToNewArrivals = () => {
