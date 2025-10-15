@@ -31,19 +31,16 @@ const scrollIndicatorVariants = {
 };
 
 export function HeroSection() {
-  // Use ref for more reliable DOM access
   const newArrivalsRef = useRef(null);
   const heroRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
   
-  // Using useCallback to prevent unnecessary re-renders
   const scrollToNewArrivals = useCallback(() => {
     if (newArrivalsRef.current) {
       newArrivalsRef.current.scrollIntoView({ behavior: 'smooth' });
     }
   }, []);
 
-  // Using Intersection Observer API directly instead of external library
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -55,14 +52,10 @@ export function HeroSection() {
       { threshold: 0.1 }
     );
 
-    if (heroRef.current) {
-      observer.observe(heroRef.current);
-    }
+    if (heroRef.current) observer.observe(heroRef.current);
 
     return () => {
-      if (heroRef.current) {
-        observer.unobserve(heroRef.current);
-      }
+      if (heroRef.current) observer.unobserve(heroRef.current);
     };
   }, []);
 
@@ -78,8 +71,8 @@ export function HeroSection() {
         {/* Overlay for better text contrast */}
         <div className="absolute inset-0 bg-black/40" aria-hidden="true"></div>
 
-        {/* Main content container - 50% width on medium screens and up */}
-        <div className="relative z-10 text-center text-white px-4 w-full md:w-1/2 lg:w-1/2 xl:w-1/2 mx-auto">
+        {/* Main content container */}
+        <div className="relative z-10 text-center text-white px-4 w-full md:w-1/2 mx-auto">
           <motion.div
             initial="hidden"
             animate={isVisible ? "visible" : "hidden"}
@@ -96,7 +89,7 @@ export function HeroSection() {
               <Button
                 size="lg"
                 onClick={scrollToNewArrivals}
-                className="bg-white text-black hover:bg-gray-100 font-medium tracking-wide px-12 py-5 text-sm uppercase transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent"
+                className="bg-white text-black hover:bg-gray-100 font-medium tracking-wide text-sm uppercase transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 px-10 md:px-14 lg:px-16 py-5 rounded-none"
                 aria-label="Shop new arrivals"
               >
                 Shop Now
@@ -120,7 +113,6 @@ export function HeroSection() {
         </motion.div>
       </section>
       
-      {/* Ref target for scrolling */}
       <div ref={newArrivalsRef} id="new-arrivals" className="sr-only" aria-hidden="true"></div>
     </>
   );
