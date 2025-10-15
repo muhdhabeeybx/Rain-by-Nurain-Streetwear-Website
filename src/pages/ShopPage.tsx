@@ -272,7 +272,7 @@ export function ShopPage() {
             transition={{ duration: 0.4 }}
             className={`grid gap-8 ${
               viewMode === 'grid'
-                ? 'grid-cols-1 lg:grid-cols-2 xl:grid-cols-3'
+                ? 'grid-cols-1 lg:grid-cols-3 xl:grid-cols-3'
                 : 'grid-cols-1 lg:grid-cols-2'
             }`}
           >
