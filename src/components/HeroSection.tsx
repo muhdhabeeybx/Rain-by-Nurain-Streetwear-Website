@@ -26,7 +26,7 @@ export function HeroSection() {
           className="hero-section mobile-keep-center"
         >
           <h1 className="font-heading text-[56px] md:text-6xl lg:text-7xl mb-8 leading-tight tracking-tight">
-            Left Home to Feed Home
+            Left House to Feed Home
           </h1>
           <p className="font-body text-lg md:text-xl mb-12 max-w-2xl mx-auto leading-relaxed text-white/90">
             Discover our latest collection of premium streetwear that tells your story
