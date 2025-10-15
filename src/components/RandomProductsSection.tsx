@@ -4,6 +4,7 @@ import { Button } from './ui/button';
 import { ProductCard } from './ProductCard';
 import { motion } from 'framer-motion';
 import { useApp } from '../contexts/AppContext';
+import { useNavigate } from 'react-router-dom';
 
 // Utility to shuffle array
 function shuffleArray(array: any[]) {
@@ -17,6 +18,7 @@ function shuffleArray(array: any[]) {
 
 export function RandomProductsSection() {
   const { products, isLoadingProducts } = useApp();
+  const navigate = useNavigate();
 
   const randomProducts = useMemo(() => {
     if (!products || !Array.isArray(products)) return [];
@@ -106,7 +108,8 @@ export function RandomProductsSection() {
         <div className="text-center mt-16">
           <Button
             size="lg"
-            className="bg-black text-white hover:bg-gray-800 px-10 py-4 font-normal tracking-wide uppercase"
+            onClick={() => navigate('/shop')}
+            className="bg-black text-white hover:bg-gray-800 px-16 py-6 font-normal tracking-wide uppercase transition-all duration-200"
           >
             View All Products →
           </Button>
