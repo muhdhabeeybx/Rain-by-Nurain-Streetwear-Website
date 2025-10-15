@@ -84,10 +84,10 @@ export function NewArrivals() {
             <Sparkles className="w-5 h-5 text-gray-400" />
           </div>
           <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl mb-8 tracking-tight">
-            New Arrivals
+            New Arrivals Built Different
           </h2>
           <p className="font-body text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            Discover the latest additions to our collection. Each piece tells a story, crafted for those who dare to stand out.
+            Every RBN release is a reflection of ambition — clean lines, timeless silhouettes, and comfort that commands presence.
           </p>
         </motion.div>
 
