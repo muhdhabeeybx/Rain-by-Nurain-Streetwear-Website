@@ -64,7 +64,7 @@ export function RandomProductsSection() {
             <Sparkles className="w-5 h-5 text-gray-400" />
           </div>
 
-          <h2 className="font-heading text-5xl md:text-6xl uppercase tracking-tight mb-6">
+          <h2 className="font-heading text-5xl md:text-6xl tracking-tight mb-6">
             For The Culture. For The Street.
           </h2>
 
@@ -76,7 +76,7 @@ export function RandomProductsSection() {
 
         {/* Grid Layout */}
         <motion.div 
-          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10"
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-20"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -98,7 +98,7 @@ export function RandomProductsSection() {
         <div className="text-center mt-16">
           <Button
             size="lg"
-            className="bg-black text-white hover:bg-gray-800 px-10 py-4 font-normal tracking-wide uppercase"
+            className="bg-black text-white hover:bg-gray-800 px-12 py-6 font-normal tracking-wide uppercase"
           >
             View All Products →
           </Button>
