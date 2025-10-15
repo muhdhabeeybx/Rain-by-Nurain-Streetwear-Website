@@ -16,12 +16,6 @@ const features = [
       'We don’t follow trends — we set pace. Each collection is built with the culture in mind.',
   },
   {
-    icon: Users,
-    title: 'For the Culture',
-    description:
-      'RBN stands for movement, for art, for creators who turn chaos into beauty.',
-  },
-  {
     icon: Zap,
     title: 'Built to Last',
     description:
@@ -52,7 +46,7 @@ export function StorySection() {
             </div>
 
             <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl mb-8 tracking-tight">
-              From Streets to Statements
+              From Streets <br /> to Statements
             </h2>
             <p className="font-body text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
               RBN was born in motion — between Abuja grit and global dreams. It’s for those who
@@ -63,7 +57,7 @@ export function StorySection() {
           </motion.div>
 
           {/* Features Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
+          <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-12 mb-20">
             {features.map((feature, index) => (
               <motion.div
                 key={feature.title}
@@ -87,6 +81,7 @@ export function StorySection() {
           </div>
 
           {/* Quote Section */}
+          {/*
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -109,6 +104,7 @@ export function StorySection() {
               </div>
             </div>
           </motion.div>
+          */}
 
         </div>
       </div>
