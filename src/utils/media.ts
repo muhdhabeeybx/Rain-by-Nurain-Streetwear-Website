@@ -10,7 +10,7 @@ export const MediaAssets = {
   
   // About section images
   aboutTeam: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=400&fit=crop&crop=center',
-  aboutStory: 'https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=600&h=400&fit=crop&crop=center',
+  aboutStory: 'src/assets/rbnhero.png',
   
   // Lifestyle editorial images
   lifestyle1: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop&crop=center',
