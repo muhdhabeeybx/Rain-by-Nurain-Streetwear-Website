@@ -66,12 +66,11 @@ export function RandomProductsSection() {
           </div>
 
           <h2 className="font-heading text-5xl md:text-6xl uppercase tracking-tight mb-6">
-            For The Culture. For The Street.
+            For The Culture. <br /> For The Street.
           </h2>
 
           <p className="font-body text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            Not every drop is new — some just hit different. Explore a random mix of styles,
-            crafted for the dreamers, the hustlers, and everyone pushing the culture forward.
+            Not every drop is loud. Some just whisper power. Here’s a handpicked mix for those who move different — dreamers, grinders, builders.
           </p>
         </motion.div>
 
@@ -111,7 +110,7 @@ export function RandomProductsSection() {
             onClick={() => navigate('/shop')}
             className="bg-black text-white hover:bg-gray-100 font-normal tracking-wide px-4 py-6 text-sm uppercase mx-auto mobile-keep-center transition-all duration-200"
           >
-            View All Products →
+            View All Products
           </Button>
         </div>
       </div>
