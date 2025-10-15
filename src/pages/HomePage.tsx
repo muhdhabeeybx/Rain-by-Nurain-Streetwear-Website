@@ -2,6 +2,7 @@ import React from 'react';
 import { HeroSection } from '../components/HeroSection';
 import { ScrollingTicker } from '../components/ScrollingTicker';
 import { NewArrivals } from '../components/NewArrivals';
+import { RandomProductsSection } from '../components/RandomProductsSection';
 import { StorySection } from '../components/StorySection';
 import { LifestyleEditorial } from '../components/LifestyleEditorial';
 import { CommunitySection } from '../components/CommunitySection';
@@ -12,6 +13,7 @@ export function HomePage() {
       <HeroSection />
       <ScrollingTicker />
       <NewArrivals />
+      <RandomProductsSection />
       <StorySection />
       <LifestyleEditorial />
       <CommunitySection />
