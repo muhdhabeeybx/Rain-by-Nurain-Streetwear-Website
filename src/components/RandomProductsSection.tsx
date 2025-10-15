@@ -18,7 +18,6 @@ function shuffleArray(array: any[]) {
 export function RandomProductsSection() {
   const { products, isLoadingProducts } = useApp();
 
-  // Shuffle and pick 8 random products — refreshes automatically on each reload
   const randomProducts = useMemo(() => {
     if (!products || !Array.isArray(products)) return [];
     return shuffleArray(products).slice(0, 8);
@@ -64,19 +63,27 @@ export function RandomProductsSection() {
             <Sparkles className="w-5 h-5 text-gray-400" />
           </div>
 
-          <h2 className="font-heading text-5xl md:text-6xl tracking-tight mb-6">
+          <h2 className="font-heading text-5xl md:text-6xl uppercase tracking-tight mb-6">
             For The Culture. For The Street.
           </h2>
 
           <p className="font-body text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            Not every drop is new — some just hit different. Explore a random mix of styles, 
+            Not every drop is new — some just hit different. Explore a random mix of styles,
             crafted for the dreamers, the hustlers, and everyone pushing the culture forward.
           </p>
         </motion.div>
 
-        {/* Grid Layout */}
-        <motion.div 
-          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-20"
+        {/* Product Grid */}
+        <motion.div
+          className="
+            grid 
+            grid-cols-2 
+            sm:grid-cols-2 
+            md:grid-cols-3 
+            lg:grid-cols-4 
+            gap-6 
+            sm:gap-8
+          "
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -88,6 +95,7 @@ export function RandomProductsSection() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.05 }}
+              className="flex flex-col"
             >
               <ProductCard product={product} />
             </motion.div>
@@ -98,7 +106,7 @@ export function RandomProductsSection() {
         <div className="text-center mt-16">
           <Button
             size="lg"
-            className="bg-black text-white hover:bg-gray-800 px-12 py-6 font-normal tracking-wide uppercase"
+            className="bg-black text-white hover:bg-gray-800 px-10 py-4 font-normal tracking-wide uppercase"
           >
             View All Products →
           </Button>
