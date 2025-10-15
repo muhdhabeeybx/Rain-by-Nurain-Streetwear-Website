@@ -13,9 +13,8 @@ export function HomePage() {
       <HeroSection />
       <ScrollingTicker />
       <NewArrivals />
-      <RandomProductsSection />
       <StorySection />
-      <LifestyleEditorial />
+      <RandomProductsSection />
       <CommunitySection />
     </>
   );
