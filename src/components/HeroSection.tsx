@@ -1,7 +1,6 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useRef, useState, useEffect } from 'react';
 import { Button } from './ui/button';
 import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
 import heroImage from '../assets/rbnhero.png';
 
 // Animation variants for better organization
@@ -34,6 +33,8 @@ const scrollIndicatorVariants = {
 export function HeroSection() {
   // Use ref for more reliable DOM access
   const newArrivalsRef = useRef(null);
+  const heroRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
   
   // Using useCallback to prevent unnecessary re-renders
   const scrollToNewArrivals = useCallback(() => {
@@ -42,16 +43,33 @@ export function HeroSection() {
     }
   }, []);
 
-  // Use intersection observer for animations when in viewport
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1
-  });
+  // Using Intersection Observer API directly instead of external library
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (heroRef.current) {
+      observer.observe(heroRef.current);
+    }
+
+    return () => {
+      if (heroRef.current) {
+        observer.unobserve(heroRef.current);
+      }
+    };
+  }, []);
 
   return (
     <>
       <section 
-        ref={ref}
+        ref={heroRef}
         className="relative h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${heroImage})` }}
         role="banner"
@@ -64,7 +82,7 @@ export function HeroSection() {
         <div className="relative z-10 text-center text-white px-4 w-full md:w-1/2 lg:w-1/2 xl:w-1/2 mx-auto">
           <motion.div
             initial="hidden"
-            animate={inView ? "visible" : "hidden"}
+            animate={isVisible ? "visible" : "hidden"}
             variants={heroVariants}
           >
             <h1 className="font-heading text-4xl md:text-6xl lg:text-7xl mb-8 leading-tight tracking-tight">
@@ -91,7 +109,7 @@ export function HeroSection() {
         <motion.div 
           className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white/80"
           initial="hidden"
-          animate={inView ? "visible" : "hidden"}
+          animate={isVisible ? "visible" : "hidden"}
           variants={scrollIndicatorVariants}
           aria-hidden="true"
         >
