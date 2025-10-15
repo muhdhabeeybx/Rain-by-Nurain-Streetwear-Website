@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from './ui/button';
 import { motion } from 'framer-motion';
-const heroImage = 'https://images.unsplash.com/photo-1580172275379-bf8077ea5b5f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdHJlZXR3ZWFyJTIwZmFzaGlvbiUyMGJsYWNrJTIwdXJiYW58ZW58MXx8fHwxNzU5MjM3OTY0fDA&ixlib=rb-4.1.0&q=80&w=1080';
+import heroImage from '../assets/rbnhero.png';
 
 export function HeroSection() {
   const scrollToNewArrivals = () => {
@@ -16,10 +16,8 @@ export function HeroSection() {
       className="relative h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat"
       style={{ backgroundImage: `url(${heroImage})` }}
     >
-      {/* Overlay */}
       <div className="absolute inset-0 bg-black/40"></div>
-      
-      {/* Content */}
+
       <div className="relative z-10 text-center text-white px-4 max-w-5xl mx-auto hero-content mobile-keep-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -50,8 +48,7 @@ export function HeroSection() {
           </motion.div>
         </motion.div>
       </div>
-      
-      {/* Scroll indicator */}
+
       <motion.div 
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white/80"
         initial={{ opacity: 0 }}
