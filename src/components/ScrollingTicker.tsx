@@ -1,10 +1,10 @@
 export function ScrollingTicker() {
   const messages = [
-    "Minimal. Bold. Rooted in Home.",
     "Rain by Nurain", 
     "Left Home to Feed Home",
-    "For the Hustlers. For the Dreamers.",
-    "Wear the Movement."
+    "For the Hustlers",
+    "For the Dreamers",
+    "Wear the Movement"
   ];
 
   return (
@@ -16,7 +16,7 @@ export function ScrollingTicker() {
             <div key={i} className="inline-flex items-center space-x-8">
               {messages.map((message, index) => (
                 <span key={index} className="text-sm font-medium tracking-wide">
-                  {message} // 
+                  {message} 
                 </span>
               ))}
             </div>
