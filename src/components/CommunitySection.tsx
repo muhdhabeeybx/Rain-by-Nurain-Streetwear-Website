@@ -9,7 +9,6 @@ export function CommunitySection() {
         {/* Community CTA */}
         <div className="mb-16">
           <h2 className="text-4xl lg:text-6xl font-bold mb-6 leading-tight">
-            Wear the Movement.<br />
             Join the Tribe.
           </h2>
           <p className="text-lg lg:text-xl mb-8 opacity-90 max-w-2xl mx-auto">
@@ -26,7 +25,7 @@ export function CommunitySection() {
 
         {/* Social media */}
         <div className="mb-16">
-          <p className="text-sm uppercase tracking-wide mb-6 opacity-75">Follow the Movement</p>
+          <p className="text-sm uppercase tracking-wide mb-6 opacity-75">Follow Us</p>
           <div className="flex justify-center space-x-6">
             <Button variant="ghost" size="sm" className="text-white hover:text-gray-300">
               <Instagram className="h-6 w-6" />
@@ -41,6 +40,7 @@ export function CommunitySection() {
         </div>
 
         {/* Newsletter */}
+        {/*
         <div className="border-t border-white/20 pt-16">
           <h3 className="text-2xl lg:text-3xl font-bold mb-4">Stay in the Rain</h3>
           <p className="text-base lg:text-lg mb-8 opacity-75 max-w-xl mx-auto">
@@ -63,6 +63,7 @@ export function CommunitySection() {
             </p>
           </div>
         </div>
+        */}
       </div>
     </section>
   );
