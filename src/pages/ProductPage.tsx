@@ -293,14 +293,15 @@ export function ProductPage() {
             <div className="space-y-3">
               <Button 
                 size="sm" 
-                className="w-full text-sm font-normal tracking-wide"
+                className="w-full bg-black text-white hover:bg-black px-16 py-6 font-normal tracking-wide uppercase transition-all duration-200"
                 onClick={handleAddToCart}
                 disabled={isOutOfStock}
               >
                 <ShoppingBag className="w-4 h-4 mr-2" />
-                {isOutOfStock ? 'Out of Stock' : `Add to Cart - ${formatPrice(product.price * quantity, 'NGN')}`}
+                {isOutOfStock ? 'Out of Stock' : `Add to Bag - ${formatPrice(product.price * quantity, 'NGN')}`}
               </Button>
-              
+             
+              {/*
               <Button 
                 variant="outline" 
                 size="sm" 
@@ -311,6 +312,7 @@ export function ProductPage() {
                 {isWishlisted ? 'Remove from Wishlist' : 'Add to Wishlist'}
               </Button>
             </div>
+            */}
 
             {/* Features */}
             <div className="border-t pt-8 space-y-4">
