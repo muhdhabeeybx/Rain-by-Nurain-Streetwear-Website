@@ -19,7 +19,7 @@ export function CommunitySection() {
             onClick={() =>
               window.open("https://www.instagram.com/rainbynurain", "_blank")
             }
-            className="bg-black text-white hover:bg-gray-100 font-normal tracking-wide px-4 py-6 text-sm uppercase mx-auto mobile-keep-center transition-all duration-200 flex items-center gap-3"
+            className="bg-white text-black hover:bg-black font-normal tracking-wide px-4 py-6 text-sm uppercase mx-auto mobile-keep-center transition-all duration-200 flex items-center gap-3"
           >
             <Instagram className="w-5 h-5" />
             Join on Instagram
