@@ -38,11 +38,11 @@ export function StorySection() {
             className="text-center mobile-keep-center mb-20"
           >
             <div className="flex items-center justify-center gap-3 mb-4">
-              <Sparkles className="w-5 h-5 text-gray-400" />
-              <span className="text-product-category text-gray-500 uppercase tracking-wider">
-                Our Story
-              </span>
-              <Sparkles className="w-5 h-5 text-gray-400" />
+            <Sparkles className="w-5 h-5 text-gray-400" />
+            <span className="text-gray-500 uppercase tracking-wider">
+              Our Story
+            </span>
+            <Sparkles className="w-5 h-5 text-gray-400" />
             </div>
 
             <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl mb-8 tracking-tight">
