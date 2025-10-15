@@ -22,12 +22,13 @@ export function HeroSection() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
           className="hero-section mobile-keep-center"
         >
           <h1 className="font-heading text-[56px] md:text-6xl lg:text-7xl mb-8 leading-tight tracking-tight">
-            For the Dreamers. <br>For the Hustlers!</br>
+            For the Dreamers.<br />For the Hustlers!
           </h1>
+
           <p className="font-body text-lg md:text-xl mb-12 max-w-2xl mx-auto leading-relaxed text-white/90">
             Rain by Nurain isn’t just streetwear — it’s a brand born from grind and grit. Designed for those who carry home wherever they go.
           </p>
