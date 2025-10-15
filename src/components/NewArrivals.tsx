@@ -78,13 +78,13 @@ export function NewArrivals() {
         >
           <div className="flex items-center justify-center gap-3 mb-6 mobile-keep-center">
             <Sparkles className="w-5 h-5 text-gray-400" />
-            <span className="text-product-category text-gray-500 uppercase tracking-wider">
+            <span className="text-gray-500 uppercase tracking-wider">
               Fresh Drops
             </span>
             <Sparkles className="w-5 h-5 text-gray-400" />
           </div>
           <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl mb-8 tracking-tight">
-            New Arrivals Built Different
+            New Arrivals
           </h2>
           <p className="font-body text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
             Every RBN release is a reflection of ambition — clean lines, timeless silhouettes, and comfort that commands presence.
