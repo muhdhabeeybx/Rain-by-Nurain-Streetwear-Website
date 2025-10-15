@@ -16,7 +16,7 @@ export function HeroSection() {
       className="relative h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat"
       style={{ backgroundImage: `url(${heroImage})` }}
     >
-      <div className="absolute inset-0 bg-black/65"></div>
+      <div className="absolute inset-0 bg-black/25"></div>
 
       <div className="relative z-10 text-center text-white px-4 max-w-5xl mx-auto hero-content mobile-keep-center">
         <motion.div
