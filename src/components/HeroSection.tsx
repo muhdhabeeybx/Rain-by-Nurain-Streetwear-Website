@@ -16,7 +16,7 @@ export function HeroSection() {
       className="relative h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat"
       style={{ backgroundImage: `url(${heroImage})` }}
     >
-      <div className="absolute inset-0 bg-black/40"></div>
+      <div className="absolute inset-0 bg-black/65"></div>
 
       <div className="relative z-10 text-center text-white px-4 max-w-5xl mx-auto hero-content mobile-keep-center">
         <motion.div
@@ -42,7 +42,7 @@ export function HeroSection() {
             <Button
               size="sm"
               onClick={scrollToNewArrivals}
-              className="bg-white text-black hover:bg-gray-100 font-normal tracking-wide px-8 py-3 text-sm uppercase mx-auto mobile-keep-center transition-all duration-200"
+              className="bg-white text-black hover:bg-gray-100 font-normal tracking-wide px-12 py-6 text-sm uppercase mx-auto mobile-keep-center transition-all duration-200"
             >
               Discover the Collection ↓
             </Button>
