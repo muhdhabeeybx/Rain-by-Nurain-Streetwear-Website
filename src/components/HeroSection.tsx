@@ -42,10 +42,11 @@ export function HeroSection() {
             <Button
               size="sm"
               onClick={scrollToNewArrivals}
-              className="bg-white text-black hover:bg-gray-100 font-normal tracking-wide px-12 py-6 text-sm uppercase mx-auto mobile-keep-center transition-all duration-200"
-            >
+              className="bg-white text-black hover:bg-gray-100 font-normal tracking-wide px-4 py-6 text-sm uppercase mx-auto mobile-keep-center transition-all duration-200"
+              >
               Discover the Collection ↓
             </Button>
+
           </motion.div>
         </motion.div>
       </div>
