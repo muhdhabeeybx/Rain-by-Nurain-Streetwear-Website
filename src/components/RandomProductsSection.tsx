@@ -65,8 +65,8 @@ export function RandomProductsSection() {
             <Sparkles className="w-5 h-5 text-gray-400" />
           </div>
 
-          <h2 className="font-heading text-5xl md:text-6xl uppercase tracking-tight mb-6">
-            For The Culture. <br /> For The Street.
+          <h2 className="font-heading text-5xl md:text-6xl tracking-tight mb-6">
+            For The Culture, <br /> For The Street
           </h2>
 
           <p className="font-body text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
