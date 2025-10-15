@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from './ui/button';
 import { motion } from 'framer-motion';
-const heroImage = '/rbnhero.png';
+const heroImage = 'https://images.unsplash.com/photo-1580172275379-bf8077ea5b5f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdHJlZXR3ZWFyJTIwZmFzaGlvbiUyMGJsYWNrJTIwdXJiYW58ZW58MXx8fHwxNzU5MjM3OTY0fDA&ixlib=rb-4.1.0&q=80&w=1080';
 
 export function HeroSection() {
   const scrollToNewArrivals = () => {
@@ -28,10 +28,10 @@ export function HeroSection() {
           className="hero-section mobile-keep-center"
         >
           <h1 className="font-heading text-[56px] md:text-6xl lg:text-7xl mb-8 leading-tight tracking-tight">
-            For the Dreamers & Hustlers
+            Left Home to Feed Home
           </h1>
           <p className="font-body text-lg md:text-xl mb-12 max-w-2xl mx-auto leading-relaxed text-white/90">
-            Rain by Nurain is more than streetwear — it’s a movement stitched from hustle, pride, and culture.
+            Discover our latest collection of premium streetwear that tells your story
           </p>
           
           <motion.div
@@ -45,7 +45,7 @@ export function HeroSection() {
               onClick={scrollToNewArrivals}
               className="bg-white text-black hover:bg-gray-100 font-normal tracking-wide px-8 py-3 text-sm uppercase mx-auto mobile-keep-center transition-all duration-200"
             >
-              Discover the Collection
+              Shop Now
             </Button>
           </motion.div>
         </motion.div>
