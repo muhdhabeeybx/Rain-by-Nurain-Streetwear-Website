@@ -8,7 +8,7 @@ export function ScrollingTicker() {
   ];
 
   return (
-    <div className="bg-black text-white py-3 overflow-hidden">
+    <div className="bg-black text-white py-5 overflow-hidden">
       <div className="whitespace-nowrap animate-marquee">
         <div className="inline-flex items-center space-x-8">
           {/* Repeat messages for continuous scroll */}
