@@ -45,7 +45,7 @@ interface AppContextType {
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
-// Sample products data (matching server prices in NGN)
+// Sample fallback data
 const SAMPLE_PRODUCTS: Product[] = [
   {
     id: 1,
@@ -138,71 +138,69 @@ function AppProviderInner({ children }: { children: ReactNode }) {
   const [isLoadingProducts, setIsLoadingProducts] = useState(true);
 
   const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
-  
-  // Load products independently (non-blocking)
+
+  // Fetch products from Supabase (admin) or fallback
   useEffect(() => {
     const loadProducts = async () => {
-      console.log('🛍️ Loading products for frontend...');
-      
-      // Start with sample products immediately for fast loading
-      setProducts(SAMPLE_PRODUCTS);
-      setIsLoadingProducts(false);
-      console.log('✅ Products loaded successfully:', SAMPLE_PRODUCTS.length, 'products');
-      
-      // Optionally try to load from server in background (non-blocking)
-      setTimeout(async () => {
-        try {
-          const response = await Promise.race([
-            fetch(`https://${projectId}.supabase.co/functions/v1/make-server-7f3098dc/products`, {
-              headers: {
-                'Authorization': `Bearer ${publicAnonKey}`,
-                'Content-Type': 'application/json'
-              }
-            }),
-            new Promise<never>((_, reject) => 
-              setTimeout(() => reject(new Error('Products fetch timeout')), 5000)
-            )
-          ]);
-          
-          if (response.ok) {
-            const data = await response.json();
-            if (data.products && data.products.length > 0) {
-              const serverProducts = data.products
-                .filter((product: any) => product.status === 'active')
-                .map((product: any) => ({
-                  id: parseInt(product.id),
-                  name: product.name,
-                  price: product.price,
-                  image: product.image,
-                  hoverImage: product.hoverImage,
-                  category: product.category,
-                  sizes: product.sizes || [],
-                  colors: product.colors || [],
-                  description: product.description || '',
-                  stock: product.stock || 0,
-                  isNew: product.isNew || false
-                }));
-              
-              setProducts(serverProducts);
-              console.log('🔄 Products updated from server:', serverProducts.length, 'products');
-            }
+      console.log('🛍️ Attempting to fetch products from Supabase Admin...');
+
+      setIsLoadingProducts(true);
+
+      try {
+        const response = await fetch(
+          `https://${projectId}.supabase.co/functions/v1/make-server-7f3098dc/products`,
+          {
+            headers: {
+              'Authorization': `Bearer ${publicAnonKey}`,
+              'Content-Type': 'application/json',
+            },
           }
-        } catch (error) {
-          console.log('⚠️ Background product sync failed, using sample products');
+        );
+
+        if (!response.ok) {
+          throw new Error(`Server returned ${response.status}`);
         }
-      }, 2000); // Load in background after 2 seconds
+
+        const data = await response.json();
+        console.log('📦 Raw response from Supabase:', data);
+
+        if (data.products && Array.isArray(data.products) && data.products.length > 0) {
+          const serverProducts = data.products
+            .filter((p: any) => p.status === 'active')
+            .map((product: any) => ({
+              id: parseInt(product.id),
+              name: product.name,
+              price: product.price,
+              image: product.image,
+              hoverImage: product.hoverImage,
+              category: product.category,
+              sizes: product.sizes || [],
+              colors: product.colors || [],
+              description: product.description || '',
+              stock: product.stock || 0,
+              isNew: product.isNew || false,
+            }));
+
+          setProducts(serverProducts);
+          console.log(`✅ Loaded ${serverProducts.length} products from Supabase`);
+        } else {
+          console.warn('⚠️ No products found from Supabase. Using sample fallback.');
+          setProducts(SAMPLE_PRODUCTS);
+        }
+      } catch (error: any) {
+        console.error('❌ Failed to fetch products from Supabase:', error.message);
+        console.warn('🔁 Falling back to SAMPLE_PRODUCTS...');
+        setProducts(SAMPLE_PRODUCTS);
+      } finally {
+        setIsLoadingProducts(false);
+      }
     };
-    
+
     loadProducts();
   }, []);
 
-  // Removed server connectivity test to prevent timeouts and blocking
-  // App now works offline-first with localStorage
-
   const refreshProducts = async () => {
-    // Products are now managed by admin context, so this will trigger
-    // a refresh through the admin context sync
-    console.log('🔄 Frontend refresh requested - products will sync from admin');
+    console.log('🔄 Manual refresh requested.');
   };
 
   const addToCart = (newItem: CartItem) => {
@@ -246,13 +244,10 @@ function AppProviderInner({ children }: { children: ReactNode }) {
 
   const toggleWishlist = (product: Product) => {
     setWishlist(currentWishlist => {
-      const isAlreadyInWishlist = currentWishlist.some(item => item.id === product.id);
-      
-      if (isAlreadyInWishlist) {
-        return currentWishlist.filter(item => item.id !== product.id);
-      } else {
-        return [...currentWishlist, product];
-      }
+      const exists = currentWishlist.some(item => item.id === product.id);
+      return exists
+        ? currentWishlist.filter(item => item.id !== product.id)
+        : [...currentWishlist, product];
     });
   };
 
@@ -277,7 +272,6 @@ function AppProviderInner({ children }: { children: ReactNode }) {
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 }
 
-// Wrapper component that ensures AdminProvider is available
 export function AppProvider({ children }: { children: ReactNode }) {
   return <AppProviderInner>{children}</AppProviderInner>;
 }
