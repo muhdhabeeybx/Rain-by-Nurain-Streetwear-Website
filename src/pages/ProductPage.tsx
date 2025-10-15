@@ -330,7 +330,7 @@ export function ProductPage() {
           </motion.div>
         </div>
 
-        {/* Promotional Banner */}
+        {/*
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -363,7 +363,8 @@ export function ProductPage() {
               </Button>
             </div>
           </div>
-        </motion.div>
+        </motion.div> 
+        */}
       </div>
     </div>
   );
