@@ -18,6 +18,7 @@ export function Footer() {
   const companyLinks = [
     { name: "About", path: "/about" },
     { name: "Contact", path: "/contact" },
+    { name: "FAQ", path: "/faq" },
   ];
 
   const supportLinks = [
@@ -25,7 +26,6 @@ export function Footer() {
     { name: "Shipping", path: "/shipping" },
     { name: "Returns", path: "/returns" },
     { name: "Care Instructions", path: "/care-instructions" },
-    { name: "FAQ", path: "/faq" },
   ];
 
   const legalLinks = [
@@ -34,14 +34,14 @@ export function Footer() {
   ];
 
   return (
-    <footer className="bg-white border-t border-black/10 py-12">
+    <footer className="bg-white border-t border-black/10 py-12 text-sm">
       <div className="max-w-7xl mx-auto px-4">
         {/* Three columns */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           {/* Company column with social */}
           <div>
-            <h4 className="text-sm font-bold mb-4">Company</h4>
-            <ul className="space-y-2 text-sm text-gray-600 mb-4">
+            <h4 className="font-bold mb-4">Company</h4>
+            <ul className="space-y-2 mb-4">
               {companyLinks.map((link, index) => (
                 <li key={`company-${index}`}>
                   <button
@@ -81,8 +81,8 @@ export function Footer() {
 
           {/* Shop column */}
           <div>
-            <h4 className="text-sm font-bold mb-4">Shop</h4>
-            <ul className="space-y-2 text-sm text-gray-600">
+            <h4 className="font-bold mb-4">Shop</h4>
+            <ul className="space-y-2">
               {shopLinks.map((link, index) => (
                 <li key={`shop-${index}`}>
                   <button
@@ -98,8 +98,8 @@ export function Footer() {
 
           {/* Support column */}
           <div>
-            <h4 className="text-sm font-bold mb-4">Support</h4>
-            <ul className="space-y-2 text-sm text-gray-600">
+            <h4 className="font-bold mb-4">Support</h4>
+            <ul className="space-y-2">
               {supportLinks.map((link, index) => (
                 <li key={`support-${index}`}>
                   <button
@@ -115,8 +115,26 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-black/10 pt-6 flex flex-col md:flex-row justify-between items-center">
-          <span className="text-xs text-gray-500 mb-2 md:mb-0">
+        <div className="border-t border-black/10 pt-6 flex flex-col md:flex-row justify-between items-center text-sm">
+          <div className="flex space-x-4 mb-2 md:mb-0">
+            <button
+              onClick={() => setShowAdminModal(true)}
+              className="hover:text-black transition-colors font-normal"
+            >
+              Admin
+            </button>
+            {legalLinks.map((link, index) => (
+              <button
+                key={`legal-${index}`}
+                onClick={() => navigate(link.path)}
+                className="hover:text-black transition-colors font-normal"
+              >
+                {link.name}
+              </button>
+            ))}
+          </div>
+
+          <span className="text-gray-500">
             Copyright © RainByNurain. 2025 — Powered by{" "}
             <a
               href="https://sableboxx.com"
@@ -128,24 +146,6 @@ export function Footer() {
             </a>
             .
           </span>
-
-          <div className="flex space-x-4 text-xs text-gray-500">
-            {legalLinks.map((link, index) => (
-              <button
-                key={`legal-${index}`}
-                onClick={() => navigate(link.path)}
-                className="hover:text-black transition-colors font-normal"
-              >
-                {link.name}
-              </button>
-            ))}
-            <button
-              onClick={() => setShowAdminModal(true)}
-              className="hover:text-black transition-colors font-normal"
-            >
-              Admin
-            </button>
-          </div>
         </div>
       </div>
 
