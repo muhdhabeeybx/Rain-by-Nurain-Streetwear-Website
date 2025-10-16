@@ -34,14 +34,21 @@ export function Footer() {
   ];
 
   return (
-    <footer className="bg-white border-t border-black/10 py-12 text-sm">
+    <footer className="bg-white border-t border-black/10 py-12">
       <div className="max-w-7xl mx-auto px-4">
-        {/* Three columns */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-          {/* Company column with social */}
-          <div>
-            <h4 className="font-bold mb-4">Company</h4>
-            <ul className="space-y-2 mb-4">
+        {/* Brand logo */}
+        <div className="mb-8">
+          <button onClick={() => navigate('/')} className="text-left">
+            <img src={brandLogo} alt="RBN" className="h-10 w-auto" />
+          </button>
+        </div>
+
+        {/* Three evenly spaced columns */}
+        <div className="flex flex-col md:flex-row md:justify-between gap-8 mb-8">
+          {/* Company column with social links */}
+          <div className="flex-1">
+            <h4 className="font-bold mb-4 text-sm">Company</h4>
+            <ul className="space-y-2 mb-4 text-sm text-gray-600">
               {companyLinks.map((link, index) => (
                 <li key={`company-${index}`}>
                   <button
@@ -80,9 +87,9 @@ export function Footer() {
           </div>
 
           {/* Shop column */}
-          <div>
-            <h4 className="font-bold mb-4">Shop</h4>
-            <ul className="space-y-2">
+          <div className="flex-1">
+            <h4 className="font-bold mb-4 text-sm">Shop</h4>
+            <ul className="space-y-2 text-sm text-gray-600">
               {shopLinks.map((link, index) => (
                 <li key={`shop-${index}`}>
                   <button
@@ -97,9 +104,9 @@ export function Footer() {
           </div>
 
           {/* Support column */}
-          <div>
-            <h4 className="font-bold mb-4">Support</h4>
-            <ul className="space-y-2">
+          <div className="flex-1">
+            <h4 className="font-bold mb-4 text-sm">Support</h4>
+            <ul className="space-y-2 text-sm text-gray-600">
               {supportLinks.map((link, index) => (
                 <li key={`support-${index}`}>
                   <button
@@ -115,8 +122,21 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-black/10 pt-6 flex flex-col md:flex-row justify-between items-center text-sm">
-          <div className="flex space-x-4 mb-2 md:mb-0">
+        <div className="border-t border-black/10 pt-6 flex flex-col md:flex-row justify-between items-center">
+          <span className="text-xs text-gray-500 mb-2 md:mb-0">
+            Copyright © RainByNurain. 2025 — Powered by{" "}
+            <a
+              href="https://sableboxx.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-black transition-colors"
+            >
+              SableBoxx
+            </a>
+            .
+          </span>
+
+          <div className="flex space-x-4 text-xs text-gray-500">
             <button
               onClick={() => setShowAdminModal(true)}
               className="hover:text-black transition-colors font-normal"
@@ -133,19 +153,6 @@ export function Footer() {
               </button>
             ))}
           </div>
-
-          <span className="text-gray-500">
-            Copyright © RainByNurain. 2025 — Powered by{" "}
-            <a
-              href="https://sableboxx.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-black transition-colors"
-            >
-              SableBoxx
-            </a>
-            .
-          </span>
         </div>
       </div>
 
