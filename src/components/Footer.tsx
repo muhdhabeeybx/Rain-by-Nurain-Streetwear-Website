@@ -118,7 +118,7 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="border-t border-black/10 pt-6 flex flex-col md:flex-row justify-between items-center">
           <span className="text-sm text-gray-500 mb-2 md:mb-0">
-            Copyright © RainByNurain. 2025 — Powered by{" "}
+            © 2025 RainByNurain, All Rights Reserved | Powered by{" "}
             <a
               href="https://sableboxx.com"
               target="_blank"
