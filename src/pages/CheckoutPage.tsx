@@ -825,12 +825,12 @@ export function CheckoutPage() {
                             />
                             <div>
                               <p className="font-body font-medium text-sm">
-                                Home Delivery
+                                Doorstep Delivery
                               </p>
                               <p className="font-body text-xs text-gray-600">
                                 {orderInfo.state
                                   ? `${formatPrice(getShippingCost())}`
-                                  : "Select state to see cost"}
+                                  : "Paid on arrival to dispatch rider"}
                               </p>
                             </div>
                           </div>
@@ -963,21 +963,21 @@ export function CheckoutPage() {
                     >
                       {loading
                         ? "Processing..."
-                        : `Pay ${formatPrice(total)} with Paystack`}
+                        : `Pay ${formatPrice(total)}`}
                     </Button>
 
                     <div className="text-center space-y-2">
                       <p className="font-body text-xs text-gray-500">
-                        Secure payment powered by Paystack
+                       Transactions are secure & encrypted by Paystack
                       </p>
                       {!paystackLoaded && (
                         <p className="font-body text-xs text-orange-600">
-                          Loading payment system...
+                          Please wait...
                         </p>
                       )}
                       {!paystackPublicKey && paystackLoaded && (
                         <p className="font-body text-xs text-red-600">
-                          Payment configuration loading...
+                          Please wait...
                         </p>
                       )}
                     </div>
@@ -1046,7 +1046,7 @@ export function CheckoutPage() {
                         <span>
                           {shippingCost > 0
                             ? formatPrice(shippingCost)
-                            : "Free"}
+                            : "0"}
                         </span>
                       </div>
                       <Separator />
