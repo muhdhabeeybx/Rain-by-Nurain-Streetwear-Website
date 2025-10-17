@@ -5,10 +5,10 @@ import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 
 const stats = [
-  { icon: Users, label: 'Happy Customers', value: '50K+' },
-  { icon: Globe, label: 'Countries', value: '25+' },
-  { icon: Award, label: 'Awards Won', value: '12' },
-  { icon: Truck, label: 'Orders Shipped', value: '100K+' },
+  { icon: Users, label: 'Happy Customers', value: '1K+' },
+  { icon: Globe, label: 'Countries', value: '5+' },
+  { icon: Award, label: 'Awards Won', value: '2' },
+  { icon: Truck, label: 'Orders Shipped', value: '500+' },
 ];
 
 const values = [
@@ -86,20 +86,18 @@ export function AboutPage() {
                 </span>
               </div>
               <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl mb-8">
-                Left Home to Feed Home
+                Built Different. <br /> Made for the Bold.
               </h1>
               <p className="font-body text-lg md:text-xl text-gray-600 leading-relaxed mb-8">
-                We are more than a streetwear brand. We are a movement for dreamers, creators, 
-                and those brave enough to leave everything behind in pursuit of something greater. 
-                Every thread tells a story of ambition, sacrifice, and the relentless pursuit of success.
+                Rain by Nurain is streetwear with purpose made for those who move with vision. Every drop reflects hustle, ambition, and the quiet confidence of the streets that raised us. We design for creators, dreamers, and believers — people who live by their grind and wear their story.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button size="lg" onClick={() => navigate('/shop')}>
                   Shop Collection
                 </Button>
-                <Button size="lg" variant="outline" onClick={() => navigate('/community')}>
+                {/* <Button size="lg" variant="outline" onClick={() => navigate('/community')}>
                   Join Community
-                </Button>
+                </Button>*/}
               </div>
             </motion.div>
 
@@ -111,7 +109,7 @@ export function AboutPage() {
             >
               <div className="aspect-[4/5] bg-gray-200 overflow-hidden">
                 <img
-                  src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&h=750&fit=crop"
+                  src="/assets/rbn.jpg"
                   alt="RBN founder"
                   className="w-full h-full object-cover"
                 />
@@ -123,10 +121,10 @@ export function AboutPage() {
                   </div>
                   <div>
                     <p className="font-body font-semibold">Rain by Nurain</p>
-                    <p className="font-body text-gray-600 text-sm">Founder & Creative Director</p>
+                    <p className="font-body text-gray-600 text-sm">Left Home to Feed Home</p>
                   </div>
                 </div>
-                <p className="font-body text-sm text-gray-600 italic">
+                <p className="font-body text-sm text-gray-600">
                   "Every design is a piece of my journey, shared with the world."
                 </p>
               </div>
@@ -160,6 +158,7 @@ export function AboutPage() {
       </section>
 
       {/* Values Section */}
+      {/*
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -207,7 +206,8 @@ export function AboutPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> 
+      */}
 
       {/* About the Founder Section */}
       <section className="py-20 bg-white">
@@ -220,10 +220,10 @@ export function AboutPage() {
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl mb-6">
-              About the Founder
+              The Founder
             </h2>
             <p className="font-body text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Meet Nurain, the creative visionary behind Rain by Nurain (RBN).
+              Meet Nurain, the creative with vision, grit & style
             </p>
           </motion.div>
 
@@ -237,7 +237,7 @@ export function AboutPage() {
             >
               <div className="aspect-[4/5] bg-gray-200 overflow-hidden">
                 <img
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=750&fit=crop"
+                  src="/assets/nurain.jpg"
                   alt="Nurain - Founder of RBN"
                   className="w-full h-full object-cover"
                 />
@@ -260,8 +260,7 @@ export function AboutPage() {
 
               <div className="space-y-6">
                 <p className="font-body text-lg text-gray-600 leading-relaxed">
-                  Born from the streets and shaped by dreams, Nurain's journey embodies the very essence of "Left Home to Feed Home." 
-                  Starting with nothing but vision and determination, he transformed his passion for authentic streetwear into a global movement.
+                  From the capital city to the world, Nurain built Rain by Nurain out of raw passion and relentless drive. Self-taught, inspired by street life and global minimalism, he turned an idea into a statement brand.
                 </p>
                 
                 <p className="font-body text-lg text-gray-600 leading-relaxed">
@@ -270,27 +269,11 @@ export function AboutPage() {
                 </p>
 
                 <div className="bg-gray-50 p-6 space-y-4">
-                  <h4 className="font-body text-lg font-semibold">Philosophy</h4>
-                  <p className="font-body text-gray-600 italic">
-                    "True style isn't about following trends—it's about staying authentic to your journey and inspiring others to find theirs. 
-                    Every piece we create is a testament to the hustle, the sacrifice, and the dreams that got us here."
+                  <p className="font-body text-gray-600">
+                    RBN is more than clothing — it’s proof that you can start small, stay real, and still go global.
                   </p>
                 </div>
-
-                <div className="grid grid-cols-2 gap-6">
-                  <div>
-                    <h5 className="font-body font-semibold mb-2">Background</h5>
-                    <p className="font-body text-sm text-gray-600">
-                      Self-taught designer with roots in street culture and underground fashion.
-                    </p>
-                  </div>
-                  <div>
-                    <h5 className="font-body font-semibold mb-2">Mission</h5>
-                    <p className="font-body text-sm text-gray-600">
-                      To create authentic streetwear that tells stories and builds community.
-                    </p>
-                  </div>
-                </div>
+                
               </div>
             </motion.div>
           </div>
