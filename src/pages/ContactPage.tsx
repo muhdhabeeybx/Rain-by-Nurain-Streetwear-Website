@@ -228,7 +228,8 @@ export function ContactPage() {
                   </div>
                 </div>
               </motion.div>
-              
+
+              {/*
               <motion.div 
                 whileHover={{ y: -2 }}
                 className="group"
@@ -249,6 +250,7 @@ export function ContactPage() {
                   </div>
                 </div>
               </motion.div>
+              */}
               
               <motion.div 
                 whileHover={{ y: -2 }}
@@ -259,13 +261,13 @@ export function ContactPage() {
                     <MessageSquare className="w-5 h-5 text-white" />
                   </div>
                   <div>
-                    <h3 className="font-medium text-black mb-2 uppercase tracking-wide text-sm">Press & Collaborations</h3>
-                    <p className="text-gray-600 mb-3 text-sm">Media inquiries and partnership opportunities</p>
+                    <h3 className="font-medium text-black mb-2 uppercase tracking-wide text-sm">Hotline</h3>
+                    <p className="text-gray-600 mb-3 text-sm">Reach out to our customer care</p>
                     <a 
-                      href="mailto:press@rainbynurain.com" 
+                      href="tel:2340812345678" 
                       className="text-black hover:text-gray-600 transition-colors font-medium"
                     >
-                      press@rainbynurain.com
+                      +234 810 234 5678
                     </a>
                   </div>
                 </div>
@@ -278,14 +280,16 @@ export function ContactPage() {
             >
               <h3 className="font-medium mb-4 uppercase tracking-wide text-sm">Response Times</h3>
               <p className="text-gray-300 leading-relaxed">
-                We typically respond within 24-48 hours during business days. 
-                For urgent order issues, please include your order number in the subject line.
+                We typically respond within 12-24 hours during business days. 
+                For urgent order issues, please include your order number in the message.
               </p>
             </motion.div>
           </motion.div>
         </div>
 
+     
         {/* Brand tagline */}
+        {/*
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -296,6 +300,7 @@ export function ContactPage() {
             Left Home to Feed Home
           </p>
         </motion.div>
+        */}
       </div>
     </main>
   );
