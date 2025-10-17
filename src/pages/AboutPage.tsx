@@ -1,5 +1,5 @@
 import React from 'react';
-import { Heart, Globe, Users, Zap, Target, Star, Award, Truck } from 'lucide-react';
+import { Heart, Globe, Users, Zap, Target, Star, Award, Truck, Instagram } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
