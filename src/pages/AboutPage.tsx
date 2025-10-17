@@ -281,42 +281,29 @@ export function AboutPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-black text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl mb-8">
-              Join the Movement
+      <section className="bg-black text-white py-24">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <div className="mb-8">
+            <h2 className="text-4xl lg:text-6xl font-bold mb-6 leading-tight">
+              Join the Tribe
             </h2>
-            <p className="font-body text-lg md:text-xl leading-relaxed mb-10 text-gray-300">
-              Be part of a community that celebrates individuality, embraces creativity, 
-              and never stops pushing boundaries. Your journey starts here.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
-                size="lg" 
-                variant="secondary"
-                onClick={() => navigate('/shop')}
-                className="bg-white text-black hover:bg-gray-100"
-              >
-                Shop Collection
-              </Button>
-              <Button 
-                size="lg" 
-                variant="outline"
-                onClick={() => navigate('/community')}
-                className="border-white text-white hover:bg-white hover:text-black"
-              >
-                Join Community
-              </Button>
-            </div>
-          </motion.div>
+          <p className="text-lg lg:text-xl mb-8 opacity-90 max-w-2xl mx-auto">
+            Connect with a global community of creators, hustlers, and dreamers. 
+            Share your story, inspire others, and be part of something bigger.
+          </p>
+          <Button
+            size="lg"
+            onClick={() =>
+              window.open("https://www.instagram.com/rainbynurain", "_blank")
+            }
+            className="bg-white text-black hover:bg-black font-normal tracking-wide px-4 py-6 text-sm uppercase mx-auto mobile-keep-center transition-all duration-200 flex items-center gap-3"
+          >
+            <Instagram className="w-5 h-5" />
+            Join on Instagram
+          </Button>
         </div>
-      </section>
+      </div>
+    </section>
     </div>
   );
 }
