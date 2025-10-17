@@ -94,10 +94,10 @@ export function SizeGuidePage() {
         >
           <h3 className="font-heading text-xl mb-4">Important Note</h3>
           <p className="text-lg">
-            <strong>ALL TEES ARE SLIGHTLY OVERSIZED</strong>
+            <strong>All wears are slightly oversided</strong>
           </p>
           <p className="text-gray-300 mt-2">
-            Our tees are designed with a relaxed, contemporary fit that's perfect for street style.
+            Our wears are designed with a relaxed, contemporary fit that's perfect for street style.
           </p>
         </motion.div>
 
@@ -140,6 +140,7 @@ export function SizeGuidePage() {
         </motion.div>
 
         {/* CTA */}
+        {/*
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -158,6 +159,7 @@ export function SizeGuidePage() {
             </Button>
           </div>
         </motion.div>
+        */}
       </div>
     </div>
   );
