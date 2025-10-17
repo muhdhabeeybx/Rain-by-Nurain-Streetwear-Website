@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from './ui/button';
 import { motion } from 'framer-motion';
-import heroImage from '../assets/rbnhero.png'; 
+import heroImage from '../assets/rbnhero.jpg'; 
 
 export function HeroSection() {
   const scrollToNewArrivals = () => {
@@ -26,7 +26,7 @@ export function HeroSection() {
           className="hero-section mobile-keep-center"
         >
           <h1 className="font-heading text-[56px] md:text-6xl lg:text-7xl mb-8 leading-tight tracking-tight">
-            For the Hustlers & Dreamers Who Left Home to Feed Home
+            For the Hustlers & Dreamers
           </h1>
 
           <p className="font-body text-lg md:text-xl mb-12 max-w-2xl mx-auto leading-relaxed text-white/90">
@@ -58,7 +58,7 @@ export function HeroSection() {
         transition={{ delay: 1, duration: 0.5 }}
       >
         <div className="flex flex-col items-center">
-          <p className="text-xs uppercase tracking-wider mb-2 font-body">Scroll. Don’t just wear it — live it.</p>
+          <p className="text-xs text-center uppercase tracking-wider mb-2 font-body">Scroll. Don’t just wear it — live it.</p>
           <div className="w-px h-8 bg-white/50"></div>
         </div>
       </motion.div>
