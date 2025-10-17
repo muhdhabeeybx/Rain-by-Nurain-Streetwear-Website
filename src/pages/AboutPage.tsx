@@ -60,8 +60,7 @@ export function AboutPage() {
                 }
                 className="bg-black text-white hover:bg-gray-800 flex items-center gap-3"
               >
-                <Instagram className="w-5 h-5" />
-                Let’s Connect
+                Shop Collection
               </Button>
               </div>
             </motion.div>
