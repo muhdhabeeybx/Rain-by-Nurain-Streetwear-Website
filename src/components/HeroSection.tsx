@@ -25,7 +25,7 @@ export function HeroSection() {
           transition={{ duration: 0.8, ease: 'easeOut' }}
           className="hero-section mobile-keep-center"
         >
-          <h1 className="font-heading text-[56px] md:text-6xl lg:text-7xl mb-8 leading-tight tracking-tight">
+          <h1 className="font-heading text-[56px] md:text-6xl lg:text-7xl mb-8 leading-none tracking-tight">
             For the Hustlers & Dreamers
           </h1>
 
@@ -44,7 +44,7 @@ export function HeroSection() {
               onClick={scrollToNewArrivals}
               className="bg-white text-black hover:bg-gray-100 font-normal tracking-wide px-4 py-6 text-sm uppercase mx-auto mobile-keep-center transition-all duration-200"
               >
-              Discover the Collection ↓
+              Discover the Collection
             </Button>
 
           </motion.div>
