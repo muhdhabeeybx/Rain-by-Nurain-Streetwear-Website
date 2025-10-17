@@ -53,9 +53,16 @@ export function AboutPage() {
                 We design for creators, dreamers, and believers — people who live by their grind and wear their story.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" onClick={() => navigate('/shop')}>
-                  Shop Collection
-                </Button>
+                <Button
+                size="lg"
+                onClick={() =>
+                  navigate('/shop')
+                }
+                className="bg-black text-white hover:bg-gray-800 flex items-center gap-3"
+              >
+                <Instagram className="w-5 h-5" />
+                Let’s Connect
+              </Button>
               </div>
             </motion.div>
 
