@@ -46,9 +46,8 @@ export function ShippingPage() {
           transition={{ delay: 0.2 }}
           className="bg-black text-white p-8 mb-12"
         >
-          <h3 className="font-heading text-xl mb-4">Important Notice</h3>
           <p className="text-lg">
-            Delivery charges are not calculated on the website. Shipping costs will be communicated 
+            Please note that delivery charges are not calculated on the website. Shipping costs will be communicated 
             at the point of dispatch based on your location and order size.
           </p>
         </motion.div>
