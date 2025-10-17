@@ -60,7 +60,7 @@ export function ShippingPage() {
           transition={{ delay: 0.3 }}
           className="mb-12"
         >
-          <h2 className="font-heading text-2xl mb-8">Shipping Process</h2>
+          <h2 className="font-heading text-2xl text-center mb-8">Shipping Process</h2>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center">
               <div className="w-16 h-16 bg-black text-white rounded-full flex items-center justify-center mx-auto mb-4">
@@ -68,7 +68,7 @@ export function ShippingPage() {
               </div>
               <h3 className="font-medium text-lg mb-2">Order Processing</h3>
               <p className="text-gray-600">
-                Orders are processed within 1-2 business days after confirmation.
+                Orders are processed within 24 hours after confirmation.
               </p>
             </div>
             
@@ -78,7 +78,7 @@ export function ShippingPage() {
               </div>
               <h3 className="font-medium text-lg mb-2">Dispatch</h3>
               <p className="text-gray-600">
-                You'll receive dispatch notification with tracking details and shipping cost.
+                You'll receive dispatch notification with details and delivery cost.
               </p>
             </div>
             
@@ -134,6 +134,7 @@ export function ShippingPage() {
         </motion.div>
 
         {/* Order Tracking */}
+        {/*
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -153,8 +154,10 @@ export function ShippingPage() {
             </ul>
           </div>
         </motion.div>
+        */}
 
         {/* Contact */}
+        {/*
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -174,6 +177,7 @@ export function ShippingPage() {
             </Button>
           </div>
         </motion.div>
+        */}
       </div>
     </div>
   );
