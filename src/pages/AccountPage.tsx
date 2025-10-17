@@ -450,11 +450,10 @@ export function AccountPage() {
                   <CardTitle className="flex items-center gap-2">
                     <Package className="w-5 h-5" />
                     Order History ({orders.length})
-                  {isRefreshingOrders && (
-                    <span className="ml-2 text-xs text-blue-600">Updating...</span>
-                  )}
+                  
                   </CardTitle>
                   <div className="flex gap-2">
+                    {/*
                     <Button
                       variant="outline"
                       size="sm"
@@ -519,6 +518,7 @@ export function AccountPage() {
                     >
                       Debug
                     </Button>
+                    */}
                   </div>
                 </div>
               </CardHeader>
@@ -556,12 +556,14 @@ export function AccountPage() {
                                 <DollarSign className="w-4 h-4" />
                                 {formatPrice(order.total, 'NGN')}
                               </span>
+                              {/*
                               {order.trackingNumber && (
                                 <span className="flex items-center gap-1 text-blue-600">
                                   <Truck className="w-4 h-4" />
                                   {order.trackingNumber}
-                                </span>
+                              </span>
                               )}
+                              */}
                             </div>
                             <div>
                               <p className="text-sm text-gray-600">Items:</p>
@@ -575,6 +577,7 @@ export function AccountPage() {
                             </div>
                           </div>
                           <div className="flex gap-2">
+                            {/*
                             <Button 
                               variant="outline" 
                               size="sm"
@@ -583,6 +586,7 @@ export function AccountPage() {
                               <Truck className="w-4 h-4 mr-2" />
                               Track
                             </Button>
+                            */}
                             <Button 
                               variant="outline" 
                               size="sm"
@@ -592,7 +596,7 @@ export function AccountPage() {
                               }}
                             >
                               <Eye className="w-4 h-4 mr-2" />
-                              Details
+                              See Order Details
                             </Button>
                           </div>
                         </div>
@@ -704,7 +708,7 @@ export function AccountPage() {
                         </div>
                         <div className="text-right">
                           <div className="font-medium">{formatPrice(item.price, 'NGN')}</div>
-                          <div className="text-sm text-gray-600">each</div>
+                          <div className="text-sm text-gray-600">-</div>
                         </div>
                       </div>
                     )) || (
@@ -765,6 +769,7 @@ export function AccountPage() {
                 )}
 
                 {/* Timeline */}
+                {/*
                 {selectedOrder.timeline && selectedOrder.timeline.length > 0 && (
                   <div>
                     <h3 className="font-semibold mb-4">Order Timeline</h3>
@@ -787,6 +792,7 @@ export function AccountPage() {
                     </div>
                   </div>
                 )}
+                */}
 
                 {/* Actions */}
                 <div className="flex justify-end pt-4 border-t">
