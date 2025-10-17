@@ -1,15 +1,40 @@
 import React, { useState, useMemo } from 'react';
-import { Filter, Grid, List, SortDesc, Search } from 'lucide-react';
-import { Button } from '../components/ui/button';
-import { Input } from '../components/ui/input';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../components/ui/select';
-import { Badge } from '../components/ui/badge';
-import { ProductCard } from '../components/ProductCard';
-import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from '../components/ui/pagination';
+import { useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useApp } from '../contexts/AppContext';
-import { useLocation } from 'react-router-dom';
 
+import { 
+  Filter, 
+  Grid, 
+  List, 
+  SortDesc, 
+  Search 
+} from 'lucide-react';
+
+import { Button } from '../components/ui/button';
+import { Input } from '../components/ui/input';
+import { Badge } from '../components/ui/badge';
+import { ProductCard } from '../components/ProductCard';
+import { 
+  Pagination, 
+  PaginationContent, 
+  PaginationItem, 
+  PaginationLink, 
+  PaginationNext, 
+  PaginationPrevious 
+} from '../components/ui/pagination';
+
+import { 
+  Select, 
+  SelectContent, 
+  SelectItem, 
+  SelectTrigger, 
+  SelectValue 
+} from '../components/ui/select';
+
+// -----------------------------
+// Constants
+// -----------------------------
 const categories = [
   { id: 'all', name: 'All Products' },
   { id: 'hoodies', name: 'Hoodies' },
@@ -26,39 +51,42 @@ const sortOptions = [
   { id: 'name', name: 'Name: A-Z' },
 ];
 
+// -----------------------------
+// Component
+// -----------------------------
 export function ShopPage() {
   const { products, isLoadingProducts } = useApp();
   const location = useLocation();
+
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [sortBy, setSortBy] = useState('featured');
   const [searchQuery, setSearchQuery] = useState('');
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [currentPage, setCurrentPage] = useState(1);
+
   const PRODUCTS_PER_PAGE = 16;
 
-  // Get search query from URL if present
+  // -----------------------------
+  // Get search query from URL
+  // -----------------------------
   React.useEffect(() => {
     const params = new URLSearchParams(location.search);
     const search = params.get('search');
-    if (search) {
-      setSearchQuery(search);
-    }
+    if (search) setSearchQuery(search);
   }, [location.search]);
 
+  // -----------------------------
+  // Filter + Sort Logic
+  // -----------------------------
   const allFilteredProducts = useMemo(() => {
-    // Safety check
-    if (!products || !Array.isArray(products) || products.length === 0) {
-      return [];
-    }
+    if (!products || !Array.isArray(products) || products.length === 0) return [];
 
     let filtered = products;
 
-    // Apply category filter
     if (selectedCategory !== 'all') {
       filtered = filtered.filter(product => product.category === selectedCategory);
     }
 
-    // Apply search filter
     if (searchQuery.trim()) {
       filtered = filtered.filter(product =>
         product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -66,7 +94,6 @@ export function ShopPage() {
       );
     }
 
-    // Apply sorting
     switch (sortBy) {
       case 'newest':
         filtered = [...filtered].reverse();
@@ -81,7 +108,6 @@ export function ShopPage() {
         filtered = [...filtered].sort((a, b) => a.name.localeCompare(b.name));
         break;
       default:
-        // Featured - keep original order
         break;
     }
 
@@ -89,19 +115,20 @@ export function ShopPage() {
   }, [products, selectedCategory, sortBy, searchQuery]);
 
   const totalPages = Math.ceil(allFilteredProducts.length / PRODUCTS_PER_PAGE);
-  
+
   const currentPageProducts = useMemo(() => {
     const startIndex = (currentPage - 1) * PRODUCTS_PER_PAGE;
     const endIndex = startIndex + PRODUCTS_PER_PAGE;
     return allFilteredProducts.slice(startIndex, endIndex);
   }, [allFilteredProducts, currentPage]);
 
-  // Reset to page 1 when filters change
   React.useEffect(() => {
     setCurrentPage(1);
   }, [selectedCategory, sortBy, searchQuery]);
 
-  // Show loading state if products are being loaded
+  // -----------------------------
+  // Loading State
+  // -----------------------------
   if (isLoadingProducts) {
     return (
       <div className="min-h-screen pt-20 bg-white">
@@ -112,9 +139,7 @@ export function ShopPage() {
             </h1>
             <div className="flex justify-center items-center gap-2">
               <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-gray-900"></div>
-              <p className="font-body text-lg text-gray-600">
-                Loading products...
-              </p>
+              <p className="font-body text-lg text-gray-600">Loading products...</p>
             </div>
           </div>
         </div>
@@ -122,7 +147,9 @@ export function ShopPage() {
     );
   }
 
-  // Show empty state if no products are available
+  // -----------------------------
+  // Empty State
+  // -----------------------------
   if (!products || !Array.isArray(products) || products.length === 0) {
     return (
       <div className="min-h-screen pt-20 bg-white">
@@ -131,18 +158,20 @@ export function ShopPage() {
             <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl mb-6">
               Shop Collection
             </h1>
-            <p className="font-body text-lg text-gray-600">
-              No products available.
-            </p>
+            <p className="font-body text-lg text-gray-600">No products available.</p>
           </div>
         </div>
       </div>
     );
   }
 
+  // -----------------------------
+  // Main Return
+  // -----------------------------
   return (
     <div className="min-h-screen pt-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -158,48 +187,34 @@ export function ShopPage() {
           </p>
         </motion.div>
 
-        {/* Filters and Search */}
-        <div className="bg-gray-50 border border-gray-100 p-6 mb-12 shadow-sm">
+        {/* Filters Section */}
+        <div className="bg-gray-50 border border-gray-100 rounded-md p-6 mb-12 shadow-sm">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
-            {/* Left side - Categories and Search */}
-            <div className="flex flex-col sm:flex-row gap-4 flex-1">
-              {/* Categories */}
-              <div className="flex flex-wrap gap-2">
-                {categories.map((category) => (
-                  <Button
-                    key={category.id}
-                    variant={selectedCategory === category.id ? "default" : "outline"}
-                    size="sm"
-                    onClick={() => setSelectedCategory(category.id)}
-                    className="font-medium"
-                  >
-                    {category.name}
-                  </Button>
-                ))}
-              </div>
 
-              {/* Search */}
-              <div className="relative flex-1 max-w-md">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-                <Input
-                  placeholder="Search products..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10"
-                />
-              </div>
+            {/* Categories */}
+            <div className="flex flex-wrap gap-3">
+              {categories.map(category => (
+                <Button
+                  key={category.id}
+                  variant={selectedCategory === category.id ? 'default' : 'outline'}
+                  size="sm"
+                  onClick={() => setSelectedCategory(category.id)}
+                  className="font-medium rounded-full px-5 py-2 text-sm"
+                >
+                  {category.name}
+                </Button>
+              ))}
             </div>
 
-            {/* Right side - Sort and View */}
+            {/* Sort + View Mode */}
             <div className="flex items-center gap-4">
-              {/* Sort */}
               <Select value={sortBy} onValueChange={setSortBy}>
-                <SelectTrigger className="w-48">
-                  <SortDesc className="w-4 h-4 mr-2" />
+                <SelectTrigger className="w-44 rounded-md">
+                  <SortDesc className="w-4 h-4 mr-2 text-gray-500" />
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  {sortOptions.map((option) => (
+                  {sortOptions.map(option => (
                     <SelectItem key={option.id} value={option.id}>
                       {option.name}
                     </SelectItem>
@@ -208,20 +223,20 @@ export function ShopPage() {
               </Select>
 
               {/* View Mode */}
-              <div className="flex">
+              <div className="flex bg-white border border-gray-200 rounded-md overflow-hidden">
                 <Button
-                  variant={viewMode === 'grid' ? 'default' : 'outline'}
+                  variant={viewMode === 'grid' ? 'default' : 'ghost'}
                   size="sm"
                   onClick={() => setViewMode('grid')}
-                  className="px-3"
+                  className={`px-4 py-2 ${viewMode === 'grid' ? 'bg-black text-white' : 'text-gray-600'}`}
                 >
                   <Grid className="w-4 h-4" />
                 </Button>
                 <Button
-                  variant={viewMode === 'list' ? 'default' : 'outline'}
+                  variant={viewMode === 'list' ? 'default' : 'ghost'}
                   size="sm"
                   onClick={() => setViewMode('list')}
-                  className="px-3 ml-1"
+                  className={`px-4 py-2 ${viewMode === 'list' ? 'bg-black text-white' : 'text-gray-600'}`}
                 >
                   <List className="w-4 h-4" />
                 </Button>
@@ -229,37 +244,30 @@ export function ShopPage() {
             </div>
           </div>
 
-          {/* Results count and active filters */}
-          <div className="flex items-center justify-between mt-4 pt-4 border-t border-gray-200">
-            <div className="flex items-center gap-4">
-              <span className="font-body text-sm text-gray-600">
-                {allFilteredProducts.length} product{allFilteredProducts.length !== 1 ? 's' : ''} found
-                {totalPages > 1 && (
-                  <span className="ml-2 text-gray-500">
-                    (Page {currentPage} of {totalPages})
-                  </span>
-                )}
-              </span>
-              
-              {/* Active filters */}
-              <div className="flex gap-2">
-                {selectedCategory !== 'all' && (
-                  <Badge variant="secondary" className="gap-1">
-                    {categories.find(c => c.id === selectedCategory)?.name}
-                    <button onClick={() => setSelectedCategory('all')} className="ml-1 hover:bg-gray-300 rounded">
-                      ×
-                    </button>
-                  </Badge>
-                )}
-                {searchQuery && (
-                  <Badge variant="secondary" className="gap-1">
-                    "{searchQuery}"
-                    <button onClick={() => setSearchQuery('')} className="ml-1 hover:bg-gray-300 rounded">
-                      ×
-                    </button>
-                  </Badge>
-                )}
-              </div>
+          {/* Results Count */}
+          <div className="flex items-center justify-between mt-6 pt-4 border-t border-gray-200">
+            <span className="font-body text-sm text-gray-600">
+              {allFilteredProducts.length} product{allFilteredProducts.length !== 1 ? 's' : ''} found
+              {totalPages > 1 && (
+                <span className="ml-2 text-gray-500">
+                  (Page {currentPage} of {totalPages})
+                </span>
+              )}
+            </span>
+
+            {/* Active Filters */}
+            <div className="flex gap-2">
+              {selectedCategory !== 'all' && (
+                <Badge variant="secondary" className="gap-1 text-sm">
+                  {categories.find(c => c.id === selectedCategory)?.name}
+                  <button
+                    onClick={() => setSelectedCategory('all')}
+                    className="ml-1 hover:bg-gray-300 rounded px-1"
+                  >
+                    ×
+                  </button>
+                </Badge>
+              )}
             </div>
           </div>
         </div>
@@ -326,8 +334,8 @@ export function ShopPage() {
                     className={currentPage === 1 ? 'pointer-events-none opacity-50' : 'cursor-pointer'}
                   />
                 </PaginationItem>
-                
-                {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
                   <PaginationItem key={page}>
                     <PaginationLink
                       onClick={() => setCurrentPage(page)}
@@ -338,7 +346,7 @@ export function ShopPage() {
                     </PaginationLink>
                   </PaginationItem>
                 ))}
-                
+
                 <PaginationItem>
                   <PaginationNext 
                     onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
@@ -349,6 +357,7 @@ export function ShopPage() {
             </Pagination>
           </div>
         )}
+
       </div>
     </div>
   );
