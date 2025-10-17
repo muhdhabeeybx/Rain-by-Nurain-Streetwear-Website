@@ -41,14 +41,14 @@ export function AboutPage() {
               <div className="flex items-center gap-2 mb-6">
                 <Target className="w-5 h-5 text-gray-400" />
                 <span className="text-gray-500 uppercase tracking-wider">
-                  Our Mission
+                  Who We Are
                 </span>
               </div>
               <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl mb-8">
                 Built Different. <br /> Made for the Bold.
               </h1>
               <p className="font-body text-lg md:text-xl text-gray-600 leading-relaxed mb-8">
-                Rain by Nurain is streetwear with purpose — made for those who move with vision.
+                Rain by Nurain is streetwear with purpose made for those who move with vision.
                 Every drop reflects hustle, ambition, and the quiet confidence of the streets that raised us.
                 We design for creators, dreamers, and believers — people who live by their grind and wear their story.
               </p>
@@ -83,7 +83,7 @@ export function AboutPage() {
                   </div>
                 </div>
                 <p className="font-body text-sm text-gray-600">
-                  “Every design is a piece of my journey, shared with the world.”
+                  Every design is a piece of my journey, shared with the world.
                 </p>
               </div>
             </motion.div>
@@ -133,10 +133,6 @@ export function AboutPage() {
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                 />
               </div>
-              <div className="absolute bottom-4 left-4 bg-white/90 p-4 shadow-md rounded-lg backdrop-blur-sm">
-                <p className="font-semibold text-sm">Nurain Idris</p>
-                <p className="text-xs text-gray-500">Creative Genius</p>
-              </div>
             </motion.div>
 
             <motion.div
@@ -157,7 +153,7 @@ export function AboutPage() {
               <p className="font-body text-lg md:text-xl text-gray-600 leading-relaxed mb-8">
                 From the capital city to the world, Nurain built Rain by Nurain out of raw passion and relentless drive.
                 Self-taught, inspired by street life and global minimalism, he turned an idea into a statement brand.
-                Every collection reflects purpose, culture, and a touch of rebellion — made for those who dare to stand out.
+                Every collection reflects purpose and culture made for those who dare to stand out.
               </p>
               <Button
                 size="lg"
@@ -174,7 +170,7 @@ export function AboutPage() {
         </div>
       </section>
 
-      {/* CTA SECTION */}
+      {/* CTA */}
       <section className="bg-black text-white py-24">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-4xl lg:text-6xl font-bold mb-6 leading-tight">
