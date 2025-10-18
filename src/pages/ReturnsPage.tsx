@@ -33,10 +33,6 @@ export function ReturnsPage() {
             <RotateCcw className="w-6 h-6" />
             <h1 className="font-heading text-4xl">Returns & Exchanges</h1>
           </div>
-          
-          <p className="text-lg text-gray-600 max-w-2xl">
-            We want you to love your RBN pieces. If something isn't quite right, we're here to help.
-          </p>
         </motion.div>
 
         {/* Return Policy */}
@@ -46,11 +42,9 @@ export function ReturnsPage() {
           transition={{ delay: 0.2 }}
           className="mb-12"
         >
-          <h2 className="font-heading text-2xl mb-6">Return Policy</h2>
           <div className="bg-black text-white p-8 mb-8">
-            <h3 className="font-heading text-xl mb-4">30-Day Return Window</h3>
             <p className="text-lg">
-              You have 30 days from the date of delivery to return items for a full refund or exchange.
+              We want you to love your RBN pieces. If something isn't quite right, we're here to help. You have 48 hours from the time of delivery to return items for a full refund or exchange.
             </p>
           </div>
           
@@ -156,6 +150,7 @@ export function ReturnsPage() {
         </motion.div>
 
         {/* Return Address */}
+        {/*
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -176,6 +171,7 @@ export function ReturnsPage() {
             </p>
           </div>
         </motion.div>
+        */}
 
         {/* Exchange Policy */}
         <motion.div
@@ -199,6 +195,7 @@ export function ReturnsPage() {
         </motion.div>
 
         {/* Contact */}
+        {/*
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -218,6 +215,7 @@ export function ReturnsPage() {
             </Button>
           </div>
         </motion.div>
+        */}
       </div>
     </div>
   );
