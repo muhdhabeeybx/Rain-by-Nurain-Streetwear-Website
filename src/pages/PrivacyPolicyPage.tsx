@@ -28,7 +28,7 @@ export function PrivacyPolicyPage() {
           <p className="text-lg text-gray-600 max-w-2xl">
             Your privacy is important to us. This policy explains how Rain by Nurain collects, uses, and protects your information.
           </p>
-          <p className="text-sm text-gray-500 mt-4">Last updated: January 1, 2025</p>
+          <p className="text-sm text-gray-500 mt-4">Last updated: October 1, 2025</p>
         </motion.div>
 
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="prose prose-lg max-w-none">
@@ -132,13 +132,7 @@ export function PrivacyPolicyPage() {
             <section>
               <h2 className="font-heading text-2xl mb-4">Contact Us</h2>
               <div className="space-y-4 text-gray-700">
-                <p>If you have any questions about this privacy policy or our data practices, please contact us:</p>
-                <div className="bg-gray-50 p-6 mt-4">
-                  <p><strong>Rain by Nurain</strong></p>
-                  <p>Email: privacy@rainbynurain.com</p>
-                  <p>Phone: [Contact Number]</p>
-                  <p>Address: [Business Address]</p>
-                </div>
+                <p>If you have any questions about this privacy policy or our data practices, please contact us.</p>
               </div>
             </section>
           </div>
