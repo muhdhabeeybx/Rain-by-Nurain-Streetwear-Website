@@ -28,7 +28,7 @@ export function TermsOfServicePage() {
           <p className="text-lg text-gray-600 max-w-2xl">
             These terms govern your use of the Rain by Nurain website and services. Please read them carefully.
           </p>
-          <p className="text-sm text-gray-500 mt-4">Last updated: January 1, 2025</p>
+          <p className="text-sm text-gray-500 mt-4">Last updated: October 1, 2025</p>
         </motion.div>
 
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="prose prose-lg max-w-none">
@@ -97,7 +97,7 @@ export function TermsOfServicePage() {
               <div className="space-y-4 text-gray-700">
                 <p>Our return policy allows for:</p>
                 <ul className="list-disc list-inside ml-4 space-y-2">
-                  <li>30-day return window from delivery date</li>
+                  <li>48-hour return window from delivery time</li>
                   <li>Items must be in original condition with tags</li>
                   <li>Return authorization required before shipping</li>
                   <li>Final sale items are not returnable</li>
@@ -156,13 +156,7 @@ export function TermsOfServicePage() {
             <section>
               <h2 className="font-heading text-2xl mb-4">Contact Information</h2>
               <div className="space-y-4 text-gray-700">
-                <p>If you have any questions about these Terms of Service, please contact us:</p>
-                <div className="bg-gray-50 p-6 mt-4">
-                  <p><strong>Rain by Nurain</strong></p>
-                  <p>Email: legal@rainbynurain.com</p>
-                  <p>Phone: [Contact Number]</p>
-                  <p>Address: [Business Address]</p>
-                </div>
+                <p>If you have any questions about these Terms of Service, please contact us.</p>
               </div>
             </section>
           </div>
