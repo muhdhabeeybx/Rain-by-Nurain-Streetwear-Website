@@ -195,6 +195,7 @@ export default function AdminPage() {
       </div>
 
       {/* Quick Actions */}
+      {/*
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center justify-between">
@@ -238,6 +239,7 @@ export default function AdminPage() {
           </div>
         </CardContent>
       </Card>
+      */}
 
       {/* Recent Activity */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
