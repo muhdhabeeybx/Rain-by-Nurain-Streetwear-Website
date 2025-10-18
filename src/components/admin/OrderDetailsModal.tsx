@@ -193,6 +193,7 @@ export function OrderDetailsModal() {
           <Separator />
 
           {/* Tracking & Timeline */}
+          {/*
           <div className="space-y-4">
             <h3 className="text-lg font-semibold flex items-center gap-2">
               <Truck className="w-5 h-5" />
@@ -229,8 +230,6 @@ export function OrderDetailsModal() {
                 </Button>
               </div>
             )}
-
-            {/* Order Timeline */}
             {order.timeline && order.timeline.length > 0 && (
               <div className="space-y-3">
                 <h4 className="font-medium">Order Timeline</h4>
@@ -257,6 +256,7 @@ export function OrderDetailsModal() {
               </div>
             )}
           </div>
+        */}
 
           <Separator />
 
