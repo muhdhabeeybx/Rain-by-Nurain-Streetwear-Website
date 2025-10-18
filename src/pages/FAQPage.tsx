@@ -32,10 +32,6 @@ export function FAQPage() {
           q: "Do you offer international shipping?",
           a: "Yes, we ship worldwide. International customers are responsible for customs duties and taxes."
         },
-        {
-          q: "Can I track my order?",
-          a: "Absolutely! Once your order is dispatched, you'll receive a tracking number via email and SMS."
-        }
       ]
     },
     {
@@ -43,7 +39,7 @@ export function FAQPage() {
       questions: [
         {
           q: "What is your return policy?",
-          a: "We offer 30-day returns for items in original condition with tags attached. Final sale items cannot be returned."
+          a: "We offer 48-hour returns for items in original condition with tags attached. Final sale items cannot be returned."
         },
         {
           q: "How do I return an item?",
@@ -51,7 +47,7 @@ export function FAQPage() {
         },
         {
           q: "Do you offer exchanges?",
-          a: "Yes, we offer free exchanges for size and color within 30 days of delivery."
+          a: "Yes, we offer free exchanges for size and color within 48 hours of delivery."
         }
       ]
     },
@@ -158,7 +154,8 @@ export function FAQPage() {
             </motion.div>
           ))}
         </div>
-
+        
+        {/*
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -171,6 +168,7 @@ export function FAQPage() {
           </p>
           <Button onClick={() => navigate('/contact')}>Contact Support</Button>
         </motion.div>
+        */}
       </div>
     </div>
   );
