@@ -40,7 +40,7 @@ const CATEGORIES = [
   { value: "accessories", label: "Accessories" },
 ];
 
-const SIZES = ["XS", "S", "M", "L", "XL", "XXL", "One Size Fits All"];
+const SIZES = ["S", "M", "L", "XL", "XXL", "One Size Fits All"];
 const COLORS = [
   { name: "Black", hex: "#000000" },
   { name: "White", hex: "#ffffff" },
@@ -48,8 +48,7 @@ const COLORS = [
   { name: "Navy", hex: "#1e3a8a" },
   { name: "Olive", hex: "#65a30d" },
   { name: "Khaki", hex: "#a3a08a" },
-  { name: "Indigo", hex: "#4338ca" },
-  { name: "Stone Wash", hex: "#94a3b8" },
+  { name: "Indigo", hex: "#4338ca" },,
 ];
 
 export function ProductModal() {
