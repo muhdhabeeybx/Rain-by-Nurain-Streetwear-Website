@@ -183,7 +183,7 @@ export function ReturnsPage() {
           <h2 className="font-heading text-2xl mb-6">Exchanges</h2>
           <div className="bg-gray-50 p-6 space-y-4">
             <p className="text-gray-700">
-              Need a different size or color? No worries — we offer free exchanges within 30 days of delivery. Simply follow the same return process, specify the item you’d like to exchange for, and once we receive your return, we’ll ship your new item right out. You won’t be charged any additional shipping fees for size exchanges.
+              Need a different size or color? No worries — we offer free exchanges within 48 hours of delivery. Simply follow the same return process, specify the item you’d like to exchange for, and once we receive your return, we’ll ship your new item right out. You won’t be charged any additional shipping fees for size exchanges.
             </p>
           </div>
         </motion.div>
