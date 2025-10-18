@@ -336,7 +336,7 @@ export function CheckoutPage() {
       deliveryFee: shippingCost,
       total: total,
       currency: "NGN",
-      status: "processing", // Set to processing since payment is verified
+      status: "processing",
       paymentReference: paymentReference,
       paymentMethod: "paystack",
       paymentStatus: "paid",
@@ -827,9 +827,7 @@ export function CheckoutPage() {
                                 Doorstep Delivery
                               </p>
                               <p className="font-body text-xs text-gray-600">
-                                {orderInfo.state
-                                  ? `${formatPrice(getShippingCost())}`
-                                  : "Paid on arrival to dispatch rider"}
+                                Paid on arrival to dispatch rider
                               </p>
                             </div>
                           </div>
