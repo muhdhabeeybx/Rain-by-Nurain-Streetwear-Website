@@ -1,0 +1,363 @@
+@import "tailwindcss";
+
+/*
+ * Rain by Nurain design tokens.
+ *
+ * Monochrome and editorial: warm paper, near-black ink, square corners.
+ * General Sans carries body copy. Archivo (expanded width) carries headlines,
+ * echoing the wide RAIN wordmark. IBM Plex Mono carries prices and small
+ * labels; it includes the ₦ glyph.
+ */
+@theme {
+  --color-paper: #f4f2ee;
+  --color-mist: #e9e6e0;
+  --color-line: #d9d5cc;
+  --color-line-strong: #8c877f;
+  --color-muted: #67635d;
+  --color-ink: #121212;
+  --color-ink-muted: #a9a49b;
+  --color-signal: #b3261e;
+  --color-success: #2e6b3c;
+
+  --font-sans: var(--font-general-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, "SFMono-Regular", monospace;
+
+  --text-display-xl: clamp(3rem, 8.5vw, 8.5rem);
+  --text-display-xl--line-height: 0.9;
+  --text-display-lg: clamp(2.25rem, 5vw, 4.75rem);
+  --text-display-lg--line-height: 0.95;
+  --text-display-md: clamp(1.625rem, 2.6vw, 2.5rem);
+  --text-display-md--line-height: 1;
+  --text-display-sm: clamp(1.25rem, 1.6vw, 1.5rem);
+  --text-display-sm--line-height: 1.1;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --animate-marquee: marquee 45s linear infinite;
+  --animate-fade-in: fade-in 300ms var(--ease-out-expo);
+  --animate-fade-out: fade-out 200ms ease-in;
+  --animate-sheet-in-right: sheet-in-right 450ms var(--ease-out-expo);
+  --animate-sheet-out-right: sheet-out-right 250ms ease-in;
+  --animate-sheet-in-left: sheet-in-left 450ms var(--ease-out-expo);
+  --animate-sheet-out-left: sheet-out-left 250ms ease-in;
+  --animate-accordion-down: accordion-down 250ms var(--ease-out-expo);
+  --animate-accordion-up: accordion-up 200ms ease-in;
+  /* Entrance on load; stagger with [--delay:…ms]. */
+  --animate-rise: rise 900ms var(--ease-out-expo) var(--delay, 0ms) both;
+  --animate-bump: bump 400ms var(--ease-out-expo);
+  --animate-hero-zoom: hero-zoom 1.6s var(--ease-out-expo) both;
+  --animate-kenburns: kenburns 8s ease-out both;
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+  }
+
+  @keyframes fade-out {
+    to {
+      opacity: 0;
+    }
+  }
+
+  @keyframes sheet-in-right {
+    from {
+      transform: translateX(100%);
+    }
+  }
+
+  @keyframes sheet-out-right {
+    to {
+      transform: translateX(100%);
+    }
+  }
+
+  @keyframes sheet-in-left {
+    from {
+      transform: translateX(-100%);
+    }
+  }
+
+  @keyframes sheet-out-left {
+    to {
+      transform: translateX(-100%);
+    }
+  }
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(1.5rem);
+    }
+  }
+
+  @keyframes kenburns {
+    from {
+      transform: scale(1.1);
+    }
+  }
+
+  @keyframes hero-zoom {
+    from {
+      transform: scale(1.08);
+    }
+  }
+
+  @keyframes bump {
+    40% {
+      transform: scale(1.3);
+    }
+  }
+}
+
+/* Expanded, uppercase headline voice. Pair with a text-display-* size. */
+@utility type-display {
+  font-family: var(--font-display);
+  font-stretch: 125%;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+}
+
+/* Small uppercase mono label: eyebrows, metadata, buttons. */
+@utility type-label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* Page gutter: 16px on phones, 24px on tablets, 40px on desktop. */
+@utility container-page {
+  width: 100%;
+  max-width: 100rem;
+  margin-inline: auto;
+  padding-inline: 1rem;
+
+  @media (width >= 48rem) {
+    padding-inline: 1.5rem;
+  }
+
+  @media (width >= 64rem) {
+    padding-inline: 2.5rem;
+  }
+}
+
+/*
+ * Fades and lifts an element in as it scrolls into view. Pure CSS (scroll-driven
+ * animations), so there is no JavaScript cost; browsers without support, and
+ * people who prefer reduced motion, simply see the element.
+ */
+@utility reveal {
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      animation: reveal-up linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 70%;
+    }
+  }
+}
+
+/* Shadow under the sticky header once the page has scrolled. */
+@utility elevate-on-scroll {
+  @supports (animation-timeline: scroll()) {
+    animation: elevate linear both;
+    animation-timeline: scroll(root);
+    animation-range: 0 6rem;
+  }
+}
+
+/* Slideshow timer bar (see HeroSlider). */
+@keyframes hero-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(2rem);
+  }
+}
+
+@keyframes elevate {
+  to {
+    box-shadow: 0 10px 30px -18px rgb(18 18 18 / 0.35);
+  }
+}
+
+/*
+ * Long-form copy on information pages. Wrap cards, tables and other designed
+ * blocks in `.not-prose` so these text styles leave them alone.
+ */
+@utility prose-info {
+  max-width: 42rem;
+  color: color-mix(in oklab, var(--color-ink) 85%, transparent);
+  line-height: 1.7;
+
+  & > * + * {
+    margin-top: 1rem;
+  }
+
+  & :where(h2):not(:where(.not-prose, .not-prose *)) {
+    margin-top: 3.5rem;
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    font-size: var(--text-display-sm);
+    font-stretch: 125%;
+    font-weight: 600;
+    line-height: 1.1;
+    text-transform: uppercase;
+  }
+
+  & :where(h3):not(:where(.not-prose, .not-prose *)) {
+    margin-top: 2rem;
+    color: var(--color-ink);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  & :where(ul):not(:where(.not-prose, .not-prose *)) {
+    list-style: disc;
+    padding-left: 1.25rem;
+  }
+
+  & :where(li + li):not(:where(.not-prose, .not-prose *)) {
+    margin-top: 0.375rem;
+  }
+
+  & :where(a):not(:where(.not-prose, .not-prose *)) {
+    color: var(--color-ink);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  & :where(strong):not(:where(.not-prose, .not-prose *)) {
+    color: var(--color-ink);
+    font-weight: 600;
+  }
+}
+
+/*
+ * View transitions (React <ViewTransition>). Content that finishes loading
+ * slides up into place as its skeleton slides away.
+ */
+::view-transition {
+  pointer-events: none;
+}
+
+::view-transition-old(.slide-down) {
+  animation:
+    150ms ease-out both vt-fade reverse,
+    150ms ease-out both vt-slide-y reverse;
+}
+
+::view-transition-new(.slide-up) {
+  animation:
+    210ms ease-in 150ms both vt-fade,
+    400ms var(--ease-out-expo) both vt-slide-y;
+}
+
+@keyframes vt-fade {
+  from {
+    filter: blur(3px);
+    opacity: 0;
+  }
+  to {
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+
+@keyframes vt-slide-y {
+  from {
+    transform: translateY(10px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+  }
+}
+
+@layer base {
+  html {
+    color-scheme: light;
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background-color: var(--color-ink);
+    color: var(--color-paper);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-ink);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
