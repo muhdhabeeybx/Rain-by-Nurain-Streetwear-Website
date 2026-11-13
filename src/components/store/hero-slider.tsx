@@ -191,7 +191,7 @@ export function HeroSlider({ slides }: { slides: HeroSlide[] }) {
 
         {count > 1 && (
           <div className="mt-8 flex items-center gap-3 lg:mt-12">
-            <span className="font-mono text-xs tabular-nums" aria-hidden>
+            <span className="text-xs tabular-nums" aria-hidden>
               {pad(index + 1)} / {pad(count)}
             </span>
             <div className="flex flex-1 gap-2">

@@ -38,7 +38,7 @@ export function CartDrawer() {
             <div className="space-y-4 border-t border-line p-5">
               <div className="flex items-baseline justify-between">
                 <span className="type-label">Subtotal</span>
-                <span className="font-mono">{formatNaira(subtotal(lines))}</span>
+                <span className="tabular-nums">{formatNaira(subtotal(lines))}</span>
               </div>
               <p className="text-sm text-muted">
                 Delivery is calculated at checkout. Prices and stock are confirmed when you pay.
@@ -81,7 +81,7 @@ function CartLineItem({ line }: { line: CartLine }) {
             </SheetClose>
             <p className="text-sm text-muted">{label}</p>
           </div>
-          <p className="font-mono text-sm">{formatNaira(line.price * line.quantity)}</p>
+          <p className="text-sm tabular-nums">{formatNaira(line.price * line.quantity)}</p>
         </div>
         <div className="mt-auto flex items-center justify-between pt-3">
           <div className="flex items-center border border-line-strong">
@@ -93,7 +93,7 @@ function CartLineItem({ line }: { line: CartLine }) {
             >
               <Minus className="size-3.5" />
             </button>
-            <span className="w-8 text-center font-mono text-sm tabular-nums" aria-live="polite">
+            <span className="w-8 text-center text-sm tabular-nums" aria-live="polite">
               {line.quantity}
             </span>
             <button

@@ -1,32 +1,26 @@
 import type { Metadata, Viewport } from "next";
-import { Archivo, IBM_Plex_Mono } from "next/font/google";
+import { Archivo } from "next/font/google";
 import localFont from "next/font/local";
 import { site } from "@/config/site";
 import { env } from "@/lib/env";
 import { isPreview } from "@/lib/preview";
 import "./globals.css";
 
-// Body copy. Downloaded by scripts/fetch-fonts.ts (it can't live in the public repo).
-const generalSans = localFont({
-  src: "../assets/fonts/GeneralSans-Variable.woff2",
-  weight: "200 700",
-  variable: "--font-general-sans",
+// Body copy, labels and prices. Downloaded by scripts/fetch-fonts.ts (it can't
+// live in the public repo).
+const satoshi = localFont({
+  src: "../assets/fonts/Satoshi-Variable.woff2",
+  weight: "300 900",
+  variable: "--font-satoshi",
   display: "swap",
 });
 
-// Headlines. Prices use the mono face, so only it preloads latin-ext (which
-// holds ₦). Archivo's latin-ext still loads on demand if a page needs it.
+// Headlines. Also the fallback for ₦, which Satoshi doesn't have: latin-ext
+// holds it and only downloads on pages that show a price.
 const archivo = Archivo({
-  subsets: ["latin"],
+  subsets: ["latin", "latin-ext"],
   axes: ["wdth"],
   variable: "--font-archivo",
-  display: "swap",
-});
-
-const plexMono = IBM_Plex_Mono({
-  subsets: ["latin", "latin-ext"],
-  weight: ["400", "500"],
-  variable: "--font-plex-mono",
   display: "swap",
 });
 
@@ -53,10 +47,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html
-      lang="en-NG"
-      className={`${generalSans.variable} ${archivo.variable} ${plexMono.variable}`}
-    >
+    <html lang="en-NG" className={`${satoshi.variable} ${archivo.variable}`}>
       <body className="flex min-h-dvh flex-col">{children}</body>
     </html>
   );

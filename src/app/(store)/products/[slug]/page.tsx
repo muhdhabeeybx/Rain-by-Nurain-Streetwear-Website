@@ -236,12 +236,12 @@ function ProductSummary({
           {range ? (
             <p>
               Delivered across Nigeria from{" "}
-              <span className="font-mono">{formatNaira(range.fromFee)}</span>, in{" "}
+              <span className="tabular-nums">{formatNaira(range.fromFee)}</span>, in{" "}
               {deliveryEstimate(range)} depending on your state
               {range.freeOver !== null && (
                 <>
                   , and free on orders over{" "}
-                  <span className="font-mono">{formatNaira(range.freeOver)}</span> in some areas
+                  <span className="tabular-nums">{formatNaira(range.freeOver)}</span> in some areas
                 </>
               )}
               . You&apos;ll see your exact fee at checkout.{" "}

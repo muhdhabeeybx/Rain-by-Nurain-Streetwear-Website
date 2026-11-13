@@ -6,7 +6,7 @@ type PriceProps = { amount: number; compareAt?: number | null; className?: strin
 export function Price({ amount, compareAt, className }: PriceProps) {
   const onSale = compareAt != null && compareAt > amount;
   return (
-    <p className={cn("font-mono text-sm", className)}>
+    <p className={cn("text-sm tabular-nums", className)}>
       {onSale && (
         <>
           <span className="sr-only">Was </span>

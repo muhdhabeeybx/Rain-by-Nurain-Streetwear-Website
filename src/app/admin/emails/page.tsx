@@ -79,7 +79,7 @@ async function EmailPreviews({ selected }: { selected?: string }) {
         <EmailFrame html={email.html} title={`${preview.label} email preview`} />
         <details className="mt-6 border-t border-line pt-4">
           <summary className="cursor-pointer type-label">Plain-text version</summary>
-          <pre className="mt-4 overflow-x-auto bg-mist p-4 font-mono text-xs leading-relaxed whitespace-pre-wrap">
+          <pre className="mt-4 overflow-x-auto bg-mist p-4 text-xs leading-relaxed whitespace-pre-wrap tabular-nums">
             {email.text}
           </pre>
         </details>

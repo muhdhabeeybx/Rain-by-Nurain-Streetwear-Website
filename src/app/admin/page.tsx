@@ -103,7 +103,7 @@ async function Overview() {
               <li key={order.number}>
                 <Link
                   href={`/admin/orders/${order.number}`}
-                  className="font-mono underline underline-offset-4"
+                  className="tabular-nums underline underline-offset-4"
                 >
                   {order.number}
                 </Link>{" "}
@@ -118,7 +118,7 @@ async function Overview() {
         {stats.map((stat) => (
           <div key={stat.label} className="border-r border-b border-line p-5">
             <dt className="type-label text-muted">{stat.label}</dt>
-            <dd className="mt-3 font-mono text-2xl">
+            <dd className="mt-3 text-2xl tabular-nums">
               {stat.href ? (
                 <Link href={stat.href} className="underline-offset-4 hover:underline">
                   {stat.value}
@@ -150,11 +150,11 @@ async function Overview() {
                     href={`/admin/orders/${order.number}`}
                     className="grid grid-cols-[1fr_auto] items-center gap-x-4 gap-y-1 py-3 text-sm hover:bg-mist/60 sm:grid-cols-[7rem_1fr_auto_auto]"
                   >
-                    <span className="font-mono">{order.number}</span>
+                    <span className="tabular-nums">{order.number}</span>
                     <span className="truncate text-muted max-sm:order-3">
                       {order.full_name} · {dateFormat.format(new Date(order.created_at))}
                     </span>
-                    <span className="font-mono">{formatNaira(order.total)}</span>
+                    <span className="tabular-nums">{formatNaira(order.total)}</span>
                     <span className="max-sm:order-4 max-sm:justify-self-end">
                       <StatusBadge status={order.status} fulfillment={order.fulfillment} />
                     </span>
@@ -186,7 +186,9 @@ async function Overview() {
                       )}
                       <span className="text-muted"> · {variant.size}</span>
                     </span>
-                    <span className={variant.stock === 0 ? "font-mono text-signal" : "font-mono"}>
+                    <span
+                      className={variant.stock === 0 ? "text-signal tabular-nums" : "tabular-nums"}
+                    >
                       {variant.stock === 0 ? "Sold out" : `${variant.stock} left`}
                     </span>
                   </Link>

@@ -4,9 +4,9 @@
  * Rain by Nurain design tokens.
  *
  * Monochrome and editorial: warm paper, near-black ink, square corners.
- * General Sans carries body copy. Archivo (expanded width) carries headlines,
- * echoing the wide RAIN wordmark. IBM Plex Mono carries prices and small
- * labels; it includes the ₦ glyph.
+ * Two typefaces. Satoshi carries body copy, labels and prices (with tabular
+ * figures). Archivo (expanded width) carries headlines, echoing the wide RAIN
+ * wordmark, and supplies the ₦ glyph Satoshi lacks.
  */
 @theme {
   --color-paper: #f4f2ee;
@@ -19,9 +19,8 @@
   --color-signal: #b3261e;
   --color-success: #2e6b3c;
 
-  --font-sans: var(--font-general-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-satoshi), var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-plex-mono), ui-monospace, "SFMono-Regular", monospace;
 
   --text-display-xl: clamp(3rem, 8.5vw, 8.5rem);
   --text-display-xl--line-height: 0.9;
@@ -147,11 +146,11 @@
   letter-spacing: -0.01em;
 }
 
-/* Small uppercase mono label: eyebrows, metadata, buttons. */
+/* Small uppercase label: eyebrows, metadata, buttons. */
 @utility type-label {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.6875rem;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1.4;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -247,9 +246,9 @@
   & :where(h3):not(:where(.not-prose, .not-prose *)) {
     margin-top: 2rem;
     color: var(--color-ink);
-    font-family: var(--font-mono);
+    font-family: var(--font-sans);
     font-size: 0.6875rem;
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: 0.12em;
     text-transform: uppercase;
   }

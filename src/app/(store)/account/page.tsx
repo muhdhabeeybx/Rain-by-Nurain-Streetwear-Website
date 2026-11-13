@@ -87,8 +87,8 @@ async function AccountContent() {
                       href={`/orders/${order.number}`}
                       className="grid grid-cols-[1fr_auto] gap-x-6 gap-y-1 py-5 hover:bg-mist/60 md:grid-cols-[1fr_1fr_auto_auto] md:items-center"
                     >
-                      <span className="font-mono text-sm">{order.number}</span>
-                      <span className="font-mono text-sm md:order-last">
+                      <span className="text-sm tabular-nums">{order.number}</span>
+                      <span className="text-sm tabular-nums md:order-last">
                         {formatNaira(order.total)}
                       </span>
                       <span className="text-sm text-muted">

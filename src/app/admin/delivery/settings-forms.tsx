@@ -46,7 +46,7 @@ export function ZoneForm({ zone }: { zone: ZoneValues }) {
           name="fee"
           inputMode="decimal"
           defaultValue={zone.fee}
-          className="font-mono"
+          className="tabular-nums"
           required
         />
       </Field>
@@ -57,7 +57,7 @@ export function ZoneForm({ zone }: { zone: ZoneValues }) {
           inputMode="decimal"
           defaultValue={zone.freeOver}
           placeholder="Never"
-          className="font-mono"
+          className="tabular-nums"
         />
       </Field>
       <div className="grid grid-cols-2 gap-2">
@@ -68,7 +68,7 @@ export function ZoneForm({ zone }: { zone: ZoneValues }) {
             type="number"
             min={0}
             defaultValue={zone.minDays}
-            className="font-mono"
+            className="tabular-nums"
           />
         </Field>
         <Field label="Max days" htmlFor={`maxDays-${id}`}>
@@ -78,7 +78,7 @@ export function ZoneForm({ zone }: { zone: ZoneValues }) {
             type="number"
             min={0}
             defaultValue={zone.maxDays}
-            className="font-mono"
+            className="tabular-nums"
           />
         </Field>
       </div>

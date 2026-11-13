@@ -114,8 +114,8 @@ async function ProductTable({ filter }: { filter: Filter }) {
                       </Link>
                     </td>
                     <td className="py-2 pr-4 text-muted">{product.category?.name}</td>
-                    <td className="py-2 pr-4 font-mono">{formatNaira(product.price)}</td>
-                    <td className={cn("py-2 pr-4 font-mono", stock === 0 && "text-signal")}>
+                    <td className="py-2 pr-4 tabular-nums">{formatNaira(product.price)}</td>
+                    <td className={cn("py-2 pr-4 tabular-nums", stock === 0 && "text-signal")}>
                       {stock === 0 ? "Sold out" : stock}
                     </td>
                     <td className="py-2">

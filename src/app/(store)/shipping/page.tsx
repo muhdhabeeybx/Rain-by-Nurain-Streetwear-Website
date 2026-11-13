@@ -49,7 +49,7 @@ export default async function ShippingPage() {
               <span className="grid size-10 place-items-center bg-ink text-paper">
                 <step.icon aria-hidden strokeWidth={1.5} className="size-5" />
               </span>
-              <span className="font-mono text-sm text-muted">0{index + 1}</span>
+              <span className="text-sm text-muted tabular-nums">0{index + 1}</span>
             </div>
             <p className="mt-4 font-medium">{step.title}</p>
             <p className="mt-1 text-sm text-muted">{step.text}</p>
@@ -78,7 +78,7 @@ export default async function ShippingPage() {
                         {zone.states.map(stateLabel).join(", ")}
                       </span>
                     </td>
-                    <td className="py-4 pr-4 font-mono whitespace-nowrap">
+                    <td className="py-4 pr-4 whitespace-nowrap tabular-nums">
                       {formatNaira(zone.fee)}
                       {zone.freeOver !== null && (
                         <span className="block text-muted">

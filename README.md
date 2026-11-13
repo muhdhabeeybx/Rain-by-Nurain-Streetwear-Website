@@ -102,7 +102,7 @@ a slow or missing email provider never holds up checkout or the admin. Without `
   to an alert replies to the customer; replying to a customer email reaches `site.email`.
 - A note typed when changing an order's status appears in that email.
 - Templates live in `src/lib/email/templates.ts`, built from the blocks in `components.ts`, which
-  follow the site's colours and type. Logos are PNGs in `public/email/` because most email apps
+  follow the site's colours and its two typefaces. Logos are PNGs in `public/email/` because most email apps
   don't show SVG.
 - The sign-in template is generated from the same design. After changing the design, run
   `UPDATE_EMAIL_TEMPLATES=1 npm test -- templates` and paste `supabase/templates/sign-in-code.html`
@@ -124,10 +124,11 @@ After changing a migration, run `npm run db:types` and `npm test`.
 
 ### Fonts and imagery
 
-- **General Sans** (body text) comes from [Fontshare](https://www.fontshare.com/fonts/general-sans)
-  under the ITF Free Font License, which allows self-hosting but not sharing the files through a
-  public repository. `scripts/fetch-fonts.ts` downloads it automatically before `dev` and
-  `build`; the file is git-ignored.
+- **Two typefaces.** **Satoshi** (body text, labels and prices) comes from
+  [Fontshare](https://www.fontshare.com/fonts/satoshi) under the ITF Free Font License, which allows
+  self-hosting but not sharing the files through a public repository. `scripts/fetch-fonts.ts`
+  downloads it automatically before `dev` and `build`; the file is git-ignored. **Archivo** (wide
+  uppercase headlines) comes from Google Fonts. Satoshi has no ₦ sign, so Archivo supplies it.
 - **Home page slideshow:** edit `src/config/home-slides.ts`.
 - **Page banners** (shop, categories, help pages): edit `src/config/imagery.ts`.
 

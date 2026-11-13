@@ -108,7 +108,7 @@ async function ShopByCategory() {
               <span className="type-display text-display-md transition-transform duration-500 ease-(--ease-out-expo) group-hover:translate-x-3">
                 {category.name}
               </span>
-              <span className="flex items-center gap-4 font-mono text-sm text-muted">
+              <span className="flex items-center gap-4 text-sm text-muted tabular-nums">
                 {category.productCount} {category.productCount === 1 ? "piece" : "pieces"}
                 <ArrowUpRight
                   aria-hidden

@@ -1,11 +1,11 @@
 /**
  * Building blocks for transactional email, styled after the storefront: warm
  * paper, near-black ink, square corners, expanded uppercase headlines and
- * small mono labels.
+ * small uppercase labels.
  *
  * Email clients are not browsers. Everything here is table layout with inline
- * styles; web fonts load where supported (Apple Mail, iOS) and fall back to
- * Helvetica/Arial elsewhere (Gmail, Outlook). Logos are opaque PNGs so they
+ * styles. The site's two typefaces, Satoshi and Archivo, load where supported
+ * (Apple Mail, iOS) and fall back to Helvetica/Arial elsewhere (Gmail, Outlook). Logos are opaque PNGs so they
  * survive clients that force dark mode. Pure functions: no env, no I/O.
  */
 import { site } from "@/config/site";
@@ -22,9 +22,8 @@ export const colors = {
 } as const;
 
 const fonts = {
-  body: "'General Sans','Helvetica Neue',Helvetica,Arial,sans-serif",
+  body: "'Satoshi','Helvetica Neue',Helvetica,Arial,sans-serif",
   display: "'Archivo','Helvetica Neue',Helvetica,Arial,sans-serif",
-  mono: "'IBM Plex Mono',Menlo,Consolas,'Courier New',monospace",
 } as const;
 
 /** What every template needs to build absolute links and image URLs. */
@@ -42,7 +41,7 @@ export function escape(value: string) {
 }
 
 const label = (color: string = colors.muted) =>
-  `font-family:${fonts.mono};font-size:11px;font-weight:500;line-height:16px;letter-spacing:1.5px;text-transform:uppercase;color:${color}`;
+  `font-family:${fonts.body};font-size:11px;font-weight:600;line-height:16px;letter-spacing:1.5px;text-transform:uppercase;color:${color}`;
 
 /** Small uppercase mono line above a headline. */
 export function eyebrow(text: string, color?: string) {
@@ -59,9 +58,9 @@ export function paragraph(html: string, options: { muted?: boolean; size?: numbe
   return `<p style="margin:16px 0 0;font-family:${fonts.body};font-size:${size}px;line-height:${Math.round(size * 1.6)}px;color:${options.muted ? colors.muted : colors.ink}">${html}</p>`;
 }
 
-/** Mono, for order numbers, prices and codes inside a paragraph. */
-export function mono(text: string) {
-  return `<span style="font-family:${fonts.mono};font-size:0.93em">${escape(text)}</span>`;
+/** An order number or amount inside a paragraph, set slightly heavier. */
+export function figure(text: string) {
+  return `<span style="font-weight:600;font-variant-numeric:tabular-nums;color:${colors.ink}">${escape(text)}</span>`;
 }
 
 export function strong(text: string) {
@@ -82,7 +81,7 @@ export function button(text: string, href: string, variant: "primary" | "seconda
   const textColor = variant === "primary" ? colors.paper : colors.ink;
   return `<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse"><tr>
 <td bgcolor="${fill}" style="background:${fill};border:1px solid ${colors.ink}">
-<a href="${escape(href)}" style="display:inline-block;padding:17px 30px;font-family:${fonts.mono};font-size:12px;font-weight:500;line-height:14px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;color:${textColor}">${escape(text)}&nbsp;&nbsp;&rarr;</a>
+<a href="${escape(href)}" style="display:inline-block;padding:17px 30px;font-family:${fonts.body};font-variant-numeric:tabular-nums;font-size:12px;font-weight:500;line-height:14px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;color:${textColor}">${escape(text)}&nbsp;&nbsp;&rarr;</a>
 </td></tr></table>`;
 }
 
@@ -94,7 +93,7 @@ export function progress(steps: string[], current: number) {
       const pad = index === steps.length - 1 ? "0" : "6px";
       return `<td width="${Math.floor(100 / steps.length)}%" valign="top" style="padding-right:${pad}">
 <div style="height:4px;line-height:4px;font-size:1px;background:${done ? colors.ink : colors.line}">&nbsp;</div>
-<p class="rbn-step" style="margin:10px 0 0;font-family:${fonts.mono};font-size:10px;font-weight:500;line-height:14px;letter-spacing:1.2px;text-transform:uppercase;color:${done ? colors.ink : colors.muted}">${escape(step)}</p>
+<p class="rbn-step" style="margin:10px 0 0;font-family:${fonts.body};font-variant-numeric:tabular-nums;font-size:10px;font-weight:500;line-height:14px;letter-spacing:1.2px;text-transform:uppercase;color:${done ? colors.ink : colors.muted}">${escape(step)}</p>
 </td>`;
     })
     .join("");
@@ -127,7 +126,7 @@ export function lineItems(lines: EmailLine[]) {
 <a href="${escape(line.href)}" style="font-family:${fonts.body};font-size:15px;line-height:22px;color:${colors.ink};text-decoration:none">${escape(line.name)}</a>
 <p style="margin:4px 0 0;font-family:${fonts.body};font-size:13px;line-height:20px;color:${colors.muted}">${escape(line.meta)}</p>
 </td>
-<td valign="top" align="right" style="padding:16px 0;border-bottom:1px solid ${colors.line};font-family:${fonts.mono};font-size:14px;line-height:22px;color:${colors.ink};white-space:nowrap">${escape(line.amount)}</td>
+<td valign="top" align="right" style="padding:16px 0;border-bottom:1px solid ${colors.line};font-family:${fonts.body};font-variant-numeric:tabular-nums;font-size:14px;line-height:22px;color:${colors.ink};white-space:nowrap">${escape(line.amount)}</td>
 </tr>`;
     })
     .join("");
@@ -140,14 +139,14 @@ export function totals(rows: [string, string][], total: [string, string]) {
     .map(
       ([name, value]) => `<tr>
 <td style="padding:5px 0;font-family:${fonts.body};font-size:14px;line-height:20px;color:${colors.muted}">${escape(name)}</td>
-<td align="right" style="padding:5px 0;font-family:${fonts.mono};font-size:14px;line-height:20px;color:${colors.ink}">${escape(value)}</td>
+<td align="right" style="padding:5px 0;font-family:${fonts.body};font-variant-numeric:tabular-nums;font-size:14px;line-height:20px;color:${colors.ink}">${escape(value)}</td>
 </tr>`,
     )
     .join("");
   return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;margin-top:12px">${body}
 <tr>
 <td style="padding:14px 0 0;border-top:1px solid ${colors.ink};${label(colors.ink)}">${escape(total[0])}</td>
-<td align="right" style="padding:14px 0 0;border-top:1px solid ${colors.ink};font-family:${fonts.mono};font-size:18px;font-weight:500;line-height:24px;color:${colors.ink}">${escape(total[1])}</td>
+<td align="right" style="padding:14px 0 0;border-top:1px solid ${colors.ink};font-family:${fonts.body};font-variant-numeric:tabular-nums;font-size:18px;font-weight:500;line-height:24px;color:${colors.ink}">${escape(total[1])}</td>
 </tr></table>`;
 }
 
@@ -189,9 +188,9 @@ export function callout(
 </td></tr></table>`;
 }
 
-/** Large mono text inside a callout: a tracking number or sign-in code. */
+/** Large text inside a callout: a tracking number or sign-in code. */
 export function code(text: string, size = 22) {
-  return `<span style="font-family:${fonts.mono};font-size:${size}px;font-weight:500;line-height:${Math.round(size * 1.3)}px;letter-spacing:${size > 24 ? 8 : 1}px">${escape(text)}</span>`;
+  return `<span style="font-family:${fonts.body};font-variant-numeric:tabular-nums;font-size:${size}px;font-weight:700;line-height:${Math.round(size * 1.3)}px;letter-spacing:${size > 24 ? 8 : 1}px">${escape(text)}</span>`;
 }
 
 type LayoutOptions = {
@@ -246,7 +245,7 @@ export function layout(options: LayoutOptions) {
 <title>${escape(site.name)}</title>
 <!--[if mso]><noscript><xml><o:OfficeDocumentSettings><o:PixelsPerInch>96</o:PixelsPerInch></o:OfficeDocumentSettings></xml></noscript>
 <style>body,table,td,p,a,h1,span{font-family:Arial,Helvetica,sans-serif!important}</style><![endif]-->
-<!--[if !mso]><!--><link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@125,600;125,700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet"><!--<![endif]-->
+<!--[if !mso]><!--><link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@125,600;125,700&amp;display=swap" rel="stylesheet"><!--<![endif]-->
 <style>
 :root{color-scheme:light only;supported-color-schemes:light only}
 body{margin:0!important;padding:0!important;width:100%!important;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}

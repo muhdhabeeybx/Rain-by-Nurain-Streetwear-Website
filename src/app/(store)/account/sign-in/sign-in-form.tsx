@@ -65,7 +65,7 @@ function CodeStep({
           autoComplete="one-time-code"
           pattern="\d{6}"
           maxLength={6}
-          className="font-mono text-lg tracking-[0.5em]"
+          className="text-lg tracking-[0.5em] tabular-nums"
           required
           autoFocus
         />

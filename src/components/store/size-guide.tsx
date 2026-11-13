@@ -34,7 +34,7 @@ export function SizeChartTable({
             ))}
           </tr>
         </thead>
-        <tbody className="font-mono">
+        <tbody className="tabular-nums">
           {chart.rows.map((row) => (
             <tr
               key={row.size}

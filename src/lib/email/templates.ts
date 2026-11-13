@@ -21,7 +21,7 @@ import {
   layout,
   lineItems,
   link,
-  mono,
+  figure,
   paragraph,
   progress,
   type RenderedEmail,
@@ -111,7 +111,7 @@ function progressBar(order: OrderView, current: number) {
 
 function helpLine(order: OrderView) {
   return paragraph(
-    `Questions? Reply to this email or write to ${link(site.email, `mailto:${site.email}`)}, and include your order number ${mono(order.number)}.`,
+    `Questions? Reply to this email or write to ${link(site.email, `mailto:${site.email}`)}, and include your order number ${figure(order.number)}.`,
     { muted: true, size: 13 },
   );
 }
@@ -365,7 +365,7 @@ export function orderCancelledEmail(order: OrderView, ctx: EmailContext): Render
     eyebrow(`Cancelled · ${order.number}`),
     headline("Order cancelled."),
     paragraph(
-      `We've cancelled order ${mono(order.number)}. We're sorry it didn't work out this time.`,
+      `We've cancelled order ${figure(order.number)}. We're sorry it didn't work out this time.`,
     ),
     note ? spacer(28) : "",
     note ? callout("A note from us", escape(note)) : "",
@@ -412,7 +412,7 @@ export function orderRefundedEmail(order: OrderView, ctx: EmailContext): Rendere
     eyebrow(`Refunded · ${order.number}`),
     headline("Refund sent."),
     paragraph(
-      `We've refunded your payment for order ${mono(order.number)} to the card or account you paid with.`,
+      `We've refunded your payment for order ${figure(order.number)} to the card or account you paid with.`,
     ),
     spacer(28),
     callout(
@@ -558,7 +558,7 @@ export function paymentReviewAlertEmail(
     eyebrow(`Needs review · ${order.number}`, "#b3261e"),
     headline("Check this payment."),
     paragraph(
-      `Paystack reported a payment for order ${mono(order.number)} that doesn't match it, so the order was ${strong("not")} marked as paid. Check the transaction in your Paystack dashboard, then refund it or contact the customer.`,
+      `Paystack reported a payment for order ${figure(order.number)} that doesn't match it, so the order was ${strong("not")} marked as paid. Check the transaction in your Paystack dashboard, then refund it or contact the customer.`,
     ),
     spacer(28),
     callout("What happened", escape(reason), "warning"),

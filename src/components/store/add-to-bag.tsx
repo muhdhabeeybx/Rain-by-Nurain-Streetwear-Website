@@ -99,7 +99,7 @@ export function AddToBag({ product, variants, sizeGuide }: AddToBagProps) {
               <label
                 key={variant.id}
                 className={cn(
-                  "grid h-12 cursor-pointer place-items-center border font-mono text-sm transition-colors has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-ink",
+                  "grid h-12 cursor-pointer place-items-center border text-sm tabular-nums transition-colors has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-ink",
                   isSelected
                     ? "border-ink bg-ink text-paper"
                     : "border-line-strong hover:border-ink",

@@ -155,7 +155,7 @@ export function CheckoutForm({ options, defaults, notice }: CheckoutFormProps) {
             <span className="hidden group-open:inline">Hide</span> order summary (
             {countItems(lines)})
           </span>
-          <span className="font-mono">{formatNaira(total)}</span>
+          <span className="tabular-nums">{formatNaira(total)}</span>
         </summary>
         <div className="pb-6">{summary}</div>
       </details>
@@ -435,7 +435,7 @@ function OrderSummary({
             <li key={line.variantId} className="flex gap-4 py-4 first:pt-0">
               <div className="relative aspect-4/5 w-16 shrink-0 overflow-hidden bg-mist">
                 <ProductImage path={line.imagePath} alt={line.name} sizes="64px" />
-                <span className="absolute top-1 right-1 grid h-5 min-w-5 place-items-center bg-ink px-1 font-mono text-[0.625rem] text-paper">
+                <span className="absolute top-1 right-1 grid h-5 min-w-5 place-items-center bg-ink px-1 text-[0.625rem] text-paper tabular-nums">
                   {line.quantity}
                 </span>
               </div>
@@ -450,7 +450,7 @@ function OrderSummary({
                   </p>
                 )}
               </div>
-              <p className="font-mono text-sm">{formatNaira(line.price * line.quantity)}</p>
+              <p className="text-sm tabular-nums">{formatNaira(line.price * line.quantity)}</p>
             </li>
           );
         })}
@@ -463,11 +463,11 @@ function OrderSummary({
       <dl className="mt-6 space-y-2 border-t border-line pt-6 text-sm">
         <div className="flex justify-between">
           <dt className="text-muted">Subtotal</dt>
-          <dd className="font-mono">{formatNaira(subtotal)}</dd>
+          <dd className="tabular-nums">{formatNaira(subtotal)}</dd>
         </div>
         <div className="flex justify-between">
           <dt className="text-muted">{fulfillment === "pickup" ? "Pickup" : "Delivery"}</dt>
-          <dd className="font-mono">
+          <dd className="tabular-nums">
             {deliveryFee === null
               ? "Choose a state"
               : deliveryFee === 0
@@ -477,7 +477,7 @@ function OrderSummary({
         </div>
         <div className="flex justify-between border-t border-line pt-4 text-base">
           <dt>Total</dt>
-          <dd className="font-mono">{formatNaira(total)}</dd>
+          <dd className="tabular-nums">{formatNaira(total)}</dd>
         </div>
       </dl>
     </div>

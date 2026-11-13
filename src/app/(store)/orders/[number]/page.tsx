@@ -121,26 +121,26 @@ function OrderDetails({ order }: { order: OrderView }) {
                       .join(" · ")}
                   </p>
                 </div>
-                <p className="font-mono text-sm">{formatNaira(item.lineTotal)}</p>
+                <p className="text-sm tabular-nums">{formatNaira(item.lineTotal)}</p>
               </li>
             ))}
           </ul>
           <dl className="mt-6 space-y-2 text-sm">
             <div className="flex justify-between">
               <dt className="text-muted">Subtotal</dt>
-              <dd className="font-mono">{formatNaira(order.subtotal)}</dd>
+              <dd className="tabular-nums">{formatNaira(order.subtotal)}</dd>
             </div>
             <div className="flex justify-between">
               <dt className="text-muted">
                 {order.fulfillment === "pickup" ? "Pickup" : "Delivery"}
               </dt>
-              <dd className="font-mono">
+              <dd className="tabular-nums">
                 {order.deliveryFee ? formatNaira(order.deliveryFee) : "Free"}
               </dd>
             </div>
             <div className="flex justify-between border-t border-line pt-4 text-base">
               <dt>Total</dt>
-              <dd className="font-mono">{formatNaira(order.total)}</dd>
+              <dd className="tabular-nums">{formatNaira(order.total)}</dd>
             </div>
           </dl>
         </section>
@@ -184,7 +184,7 @@ function OrderDetails({ order }: { order: OrderView }) {
             )}
             {order.trackingNumber && (
               <p className="mt-4 text-sm">
-                Tracking: <span className="font-mono">{order.trackingNumber}</span>
+                Tracking: <span className="tabular-nums">{order.trackingNumber}</span>
                 {order.carrier && <span className="text-muted"> ({order.carrier})</span>}
               </p>
             )}

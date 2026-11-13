@@ -108,7 +108,7 @@ export function ProductForm({
               name="colorHex"
               value={colorHex}
               onChange={(event) => setColorHex(event.target.value)}
-              className="font-mono"
+              className="tabular-nums"
             />
           </div>
         </Field>
@@ -178,7 +178,7 @@ export function ProductForm({
             inputMode="decimal"
             defaultValue={values.price}
             placeholder="28000"
-            className="font-mono"
+            className="tabular-nums"
             required
           />
         </Field>
@@ -193,7 +193,7 @@ export function ProductForm({
             name="compareAtPrice"
             inputMode="decimal"
             defaultValue={values.compareAtPrice}
-            className="font-mono"
+            className="tabular-nums"
           />
         </Field>
       </section>
@@ -226,7 +226,7 @@ export function ProductForm({
                       aria-label={`Size ${index + 1}`}
                       value={row.size}
                       onChange={(event) => updateRow(row.key, { size: event.target.value })}
-                      className="h-10 w-24 font-mono"
+                      className="h-10 w-24 tabular-nums"
                     />
                   </td>
                   <td className="py-1 pr-2">
@@ -238,7 +238,7 @@ export function ProductForm({
                       onChange={(event) =>
                         updateRow(row.key, { stock: Math.max(0, Number(event.target.value) || 0) })
                       }
-                      className="h-10 w-28 font-mono"
+                      className="h-10 w-28 tabular-nums"
                     />
                   </td>
                   <td className="py-1 pr-2">
@@ -246,7 +246,7 @@ export function ProductForm({
                       aria-label={`SKU for ${row.size || `size ${index + 1}`}`}
                       value={row.sku}
                       onChange={(event) => updateRow(row.key, { sku: event.target.value })}
-                      className="h-10 font-mono"
+                      className="h-10 tabular-nums"
                     />
                   </td>
                   <td className="py-1 text-right">
@@ -305,7 +305,7 @@ export function ProductForm({
             name="sortOrder"
             type="number"
             defaultValue={values.sortOrder}
-            className="font-mono"
+            className="tabular-nums"
           />
         </Field>
         <Field
@@ -321,7 +321,7 @@ export function ProductForm({
             value={slug}
             placeholder={suggestedSlug}
             onChange={(event) => setSlug(event.target.value)}
-            className="font-mono"
+            className="tabular-nums"
           />
         </Field>
         <label className="flex cursor-pointer items-center gap-3 text-sm md:col-span-2">

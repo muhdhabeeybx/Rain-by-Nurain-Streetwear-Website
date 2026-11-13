@@ -52,7 +52,7 @@ async function OrderDetail({ number }: { number: string }) {
         ← Orders
       </Link>
       <div className="mt-4 flex flex-wrap items-center gap-4">
-        <h1 className="type-display font-mono text-display-md">{order.number}</h1>
+        <h1 className="type-display text-display-md tabular-nums">{order.number}</h1>
         <StatusBadge status={order.status} fulfillment={order.fulfillment} />
       </div>
       <p className="mt-2 text-sm text-muted">
@@ -103,7 +103,7 @@ async function OrderDetail({ number }: { number: string }) {
                       {[item.color_name, `Size ${item.size}`].filter(Boolean).join(" · ")}
                     </p>
                   </div>
-                  <p className="font-mono">
+                  <p className="tabular-nums">
                     {item.quantity} × {formatNaira(item.unit_price)}
                   </p>
                 </li>
@@ -117,7 +117,7 @@ async function OrderDetail({ number }: { number: string }) {
               ].map(([label, amount]) => (
                 <div key={label} className="flex justify-between">
                   <dt className={label === "Total" ? "" : "text-muted"}>{label}</dt>
-                  <dd className="font-mono">{formatNaira(Number(amount))}</dd>
+                  <dd className="tabular-nums">{formatNaira(Number(amount))}</dd>
                 </div>
               ))}
             </dl>
@@ -171,7 +171,7 @@ async function OrderDetail({ number }: { number: string }) {
             )}
             {order.tracking_number && (
               <p className="mt-3">
-                Tracking <span className="font-mono">{order.tracking_number}</span>
+                Tracking <span className="tabular-nums">{order.tracking_number}</span>
                 {order.carrier && ` (${order.carrier})`}
               </p>
             )}
@@ -181,7 +181,7 @@ async function OrderDetail({ number }: { number: string }) {
             <h2 id="payment-heading" className="mb-3 type-label">
               Payment
             </h2>
-            <p className="font-mono break-all text-muted">{order.payment_reference}</p>
+            <p className="break-all text-muted tabular-nums">{order.payment_reference}</p>
             <p className="text-muted">Look this reference up in your Paystack dashboard.</p>
           </section>
 

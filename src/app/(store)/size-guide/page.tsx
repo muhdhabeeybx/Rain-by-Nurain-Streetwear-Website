@@ -30,7 +30,7 @@ export default function SizeGuidePage() {
         <ol className="not-prose mt-6 grid gap-3 sm:grid-cols-3">
           {HOW_TO_MEASURE.map((step, index) => (
             <li key={step.label} className="border border-line p-4">
-              <span className="font-mono text-sm text-muted">0{index + 1}</span>
+              <span className="text-sm text-muted tabular-nums">0{index + 1}</span>
               <p className="mt-2 font-medium">{step.label}</p>
               <p className="mt-1 text-sm text-muted">{step.text}</p>
             </li>

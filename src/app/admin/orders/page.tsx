@@ -117,7 +117,7 @@ async function OrdersTable({ filter, query }: { filter: FilterKey; query: string
                   className="flex flex-col gap-2 py-4 text-sm"
                 >
                   <span className="flex items-center justify-between gap-3">
-                    <span className="font-mono">
+                    <span className="tabular-nums">
                       {order.number}
                       {order.needs_review && (
                         <span className="ml-2 type-label text-signal">Review</span>
@@ -129,7 +129,7 @@ async function OrdersTable({ filter, query }: { filter: FilterKey; query: string
                     <span className="truncate">
                       {order.full_name} · {order.fulfillment === "pickup" ? "Pickup" : order.state}
                     </span>
-                    <span className="font-mono text-ink">{formatNaira(order.total)}</span>
+                    <span className="text-ink tabular-nums">{formatNaira(order.total)}</span>
                   </span>
                   <span className="text-muted">
                     {dateFormat.format(new Date(order.created_at))}
@@ -156,7 +156,7 @@ async function OrdersTable({ filter, query }: { filter: FilterKey; query: string
                     <td className="py-3 pr-4">
                       <Link
                         href={`/admin/orders/${order.number}`}
-                        className="font-mono underline-offset-4 hover:underline"
+                        className="tabular-nums underline-offset-4 hover:underline"
                       >
                         {order.number}
                       </Link>
@@ -173,10 +173,10 @@ async function OrdersTable({ filter, query }: { filter: FilterKey; query: string
                         {order.fulfillment === "pickup" ? "Pickup" : order.state}
                       </span>
                     </td>
-                    <td className="py-3 pr-4 font-mono">
+                    <td className="py-3 pr-4 tabular-nums">
                       {order.items.reduce((sum, item) => sum + item.quantity, 0)}
                     </td>
-                    <td className="py-3 pr-4 font-mono">{formatNaira(order.total)}</td>
+                    <td className="py-3 pr-4 tabular-nums">{formatNaira(order.total)}</td>
                     <td className="py-3">
                       <StatusBadge status={order.status} fulfillment={order.fulfillment} />
                     </td>

@@ -1,5 +1,5 @@
 /**
- * Downloads General Sans from Fontshare into src/assets/fonts.
+ * Downloads Satoshi (body text) from Fontshare into src/assets/fonts.
  *
  * The ITF Free Font License allows self-hosting the font on our own site but
  * not redistributing it through a public repository, so the file is
@@ -12,9 +12,9 @@ import { join } from "node:path";
 const DIR = join(import.meta.dirname, "../src/assets/fonts");
 const FONTS = [
   {
-    file: "GeneralSans-Variable.woff2",
-    // "@1" is Fontshare's variable font (weights 200–700) in one file.
-    css: "https://api.fontshare.com/v2/css?f[]=general-sans@1&display=swap",
+    file: "Satoshi-Variable.woff2",
+    // "@1" is Fontshare's variable font (weights 300–900) in one file.
+    css: "https://api.fontshare.com/v2/css?f[]=satoshi@1&display=swap",
   },
 ];
 
@@ -44,7 +44,7 @@ for (const font of FONTS) {
   } catch (error) {
     console.error(
       `Could not download ${font.file} from Fontshare: ${error instanceof Error ? error.message : error}\n` +
-        `Download General Sans from https://www.fontshare.com/fonts/general-sans and copy\n` +
+        `Download Satoshi from https://www.fontshare.com/fonts/satoshi and copy\n` +
         `Fonts/WEB/fonts/${font.file} to src/assets/fonts/.`,
     );
     process.exit(1);
