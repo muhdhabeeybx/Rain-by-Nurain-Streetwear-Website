@@ -1,0 +1,13 @@
+# Netlify build settings. These override the ones in the Netlify UI, which
+# were left over from the old Vite site (publish directory "build").
+#
+# Environment variables (Site configuration → Environment variables) are
+# still set in the UI, never here: see .env.example for the list.
+
+[build]
+  command = "npm run build"
+  # The Next.js runtime (@netlify/plugin-nextjs) reads the build from here.
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "24"

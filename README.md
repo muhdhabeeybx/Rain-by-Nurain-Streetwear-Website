@@ -131,6 +131,20 @@ After changing a migration, run `npm run db:types` and `npm test`.
 - **Home page slideshow:** edit `src/config/home-slides.ts`.
 - **Page banners** (shop, categories, help pages): edit `src/config/imagery.ts`.
 
+## Deploying (Netlify)
+
+`main` deploys to Netlify. `netlify.toml` sets the build command, the `.next` publish directory
+and Node 24. Before the first deploy, add these under **Site configuration → Environment
+variables** (values as in `.env.example`):
+
+- `NEXT_PUBLIC_SITE_URL`: the live URL, e.g. `https://rainbynurain.com`
+- `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`, `SUPABASE_SECRET_KEY`
+- `PAYSTACK_SECRET_KEY`
+- Optional: `RESEND_API_KEY`, `EMAIL_FROM`, `ORDER_ALERT_EMAIL`
+
+The build reads the catalogue, so the Supabase database must be migrated and seeded first (see
+Getting started). If a build fails, Netlify keeps serving the previous deploy.
+
 ## Before launch
 
 - [ ] Real product catalogue and photos added in `/admin/products`
