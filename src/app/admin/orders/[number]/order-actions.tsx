@@ -98,7 +98,11 @@ export function OrderStatusPanel({
           <Field
             label="Note to customer (optional)"
             htmlFor="message"
-            hint="Shown on their order page. Leave blank for the standard message."
+            hint={
+              chosen.status === "processing" || status === "pending_payment"
+                ? "Shown on their order page. Leave blank for the standard message."
+                : "Shown on their order page and in the email we send them. Leave blank for the standard message."
+            }
           >
             <Textarea id="message" name="message" rows={2} />
           </Field>

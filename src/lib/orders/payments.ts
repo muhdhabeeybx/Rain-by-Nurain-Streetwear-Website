@@ -1,6 +1,6 @@
 import "server-only";
 import { after } from "next/server";
-import { sendOrderConfirmation } from "@/lib/email/order-confirmation";
+import { notifyOrderPaid, notifyPaymentFlagged } from "@/lib/email/notify";
 import type { PaystackTransaction } from "@/lib/paystack";
 import { createServiceClient } from "@/lib/supabase/service";
 
@@ -26,7 +26,10 @@ export async function recordPaystackPayment(transaction: PaystackTransaction) {
   if (error) throw new Error(`Could not record payment ${transaction.reference}: ${error.message}`);
 
   if (data.newly_paid) {
-    after(() => sendOrderConfirmation(data.order_id));
+    // Receipt to the customer, new-order alert (with any review flag) to the team.
+    after(() => notifyOrderPaid(data.order_id));
+  } else if (data.newly_flagged) {
+    after(() => notifyPaymentFlagged(data.order_id));
   }
   return data;
 }

@@ -244,10 +244,16 @@ otp_expiry = 3600
 # admin_email = "admin@email.com"
 # sender_name = "Admin"
 
-# Uncomment to customize email template
-# [auth.email.template.invite]
-# subject = "You have been invited"
-# content_path = "./supabase/templates/invite.html"
+# Sign-in codes. New customers get the "confirmation" email and returning ones
+# get "magic_link", so both use the branded code template. Generated from
+# src/lib/email/templates.ts; paste the same file into the hosted dashboard.
+[auth.email.template.magic_link]
+subject = "Your Rain by Nurain sign-in code"
+content_path = "./supabase/templates/sign-in-code.html"
+
+[auth.email.template.confirmation]
+subject = "Your Rain by Nurain sign-in code"
+content_path = "./supabase/templates/sign-in-code.html"
 
 # Uncomment to customize notification email template
 # [auth.email.notification.password_changed]

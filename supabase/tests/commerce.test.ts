@@ -20,6 +20,7 @@ type Order = {
   payment_reference: string;
   reserved_until: string | null;
   needs_review: boolean;
+  review_reason: string | null;
   user_id: string | null;
 };
 
@@ -66,6 +67,7 @@ function confirmPayment(db: TestDatabase, reference: string, amount: number, cur
       order_id: string;
       order_status: string;
       newly_paid: boolean;
+      newly_flagged: boolean;
     }>(`select * from public.confirm_payment($1, $2, $3)`, [reference, amount, currency]);
     return rows[0];
   });
@@ -270,8 +272,13 @@ describe("confirm_payment", () => {
     const first = await confirmPayment(db, order.payment_reference, order.total);
     const second = await confirmPayment(db, order.payment_reference, order.total);
 
-    expect(first).toMatchObject({ order_id: order.id, order_status: "paid", newly_paid: true });
-    expect(second).toMatchObject({ order_status: "paid", newly_paid: false });
+    expect(first).toMatchObject({
+      order_id: order.id,
+      order_status: "paid",
+      newly_paid: true,
+      newly_flagged: false,
+    });
+    expect(second).toMatchObject({ order_status: "paid", newly_paid: false, newly_flagged: false });
     const paid = await getOrder(db, order.id);
     expect(paid.reserved_until).toBeNull();
     expect(await stockOf(db, tee.variants.M)).toBe(1);
@@ -282,10 +289,21 @@ describe("confirm_payment", () => {
     const order = await placeOrder(db, { items: [{ variant_id: tee.variants.M, quantity: 1 }] });
 
     const result = await confirmPayment(db, order.payment_reference, 1 * NAIRA);
+    // The redirect and the webhook both report it; the team is alerted once.
+    const repeat = await confirmPayment(db, order.payment_reference, 1 * NAIRA);
 
-    expect(result).toMatchObject({ order_status: "pending_payment", newly_paid: false });
+    expect(result).toMatchObject({
+      order_status: "pending_payment",
+      newly_paid: false,
+      newly_flagged: true,
+    });
+    expect(repeat.newly_flagged).toBe(false);
     const flagged = await getOrder(db, order.id);
     expect(flagged.needs_review).toBe(true);
+    // People read this, so it's in naira, not kobo.
+    expect(flagged.review_reason).toContain(
+      `received 1.00 NGN, expected ${(order.total / 100).toLocaleString("en-NG", { minimumFractionDigits: 2 })} NGN`,
+    );
   });
 
   it("rejects the wrong currency", async () => {
@@ -320,7 +338,7 @@ describe("confirm_payment", () => {
 
     const result = await confirmPayment(db, late.payment_reference, late.total);
 
-    expect(result).toMatchObject({ order_status: "paid", newly_paid: true });
+    expect(result).toMatchObject({ order_status: "paid", newly_paid: true, newly_flagged: true });
     expect((await getOrder(db, late.id)).needs_review).toBe(true);
     expect(await stockOf(db, tee.variants.M)).toBe(0);
   });

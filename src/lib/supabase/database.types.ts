@@ -591,6 +591,7 @@ export type Database = {
       confirm_payment: {
         Args: { p_amount: number; p_currency: string; p_paid_at?: string; p_reference: string };
         Returns: {
+          newly_flagged: boolean;
           newly_paid: boolean;
           order_id: string;
           order_number: string;

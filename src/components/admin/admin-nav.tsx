@@ -11,6 +11,7 @@ const LINKS: { label: string; href: Route }[] = [
   { label: "Orders", href: "/admin/orders" },
   { label: "Products", href: "/admin/products" },
   { label: "Delivery", href: "/admin/delivery" },
+  { label: "Emails", href: "/admin/emails" },
 ];
 
 export function AdminNav() {

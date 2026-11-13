@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { HOME_SLIDES } from "@/config/home-slides";
 import { site } from "@/config/site";
 import { getCategories, getProducts } from "@/lib/catalog";
+import { env } from "@/lib/env";
 
 const MARQUEE = [
   "Rain by Nurain",
@@ -22,6 +23,7 @@ const MARQUEE = [
 export default function HomePage() {
   return (
     <>
+      <HomeJsonLd />
       <h1 className="sr-only">
         {site.name}: streetwear from {site.city} for the hustlers and dreamers
       </h1>
@@ -187,5 +189,46 @@ function Promises() {
         ))}
       </ul>
     </section>
+  );
+}
+
+/** Tells search engines who the brand is and how to search the shop. */
+function HomeJsonLd() {
+  const url = env.NEXT_PUBLIC_SITE_URL;
+  const data = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": `${url}/#organization`,
+        name: site.name,
+        alternateName: site.shortName,
+        url,
+        logo: `${url}/apple-icon.png`,
+        email: site.email,
+        slogan: site.tagline,
+        sameAs: [site.social.instagram.url, site.social.tiktok.url],
+        address: { "@type": "PostalAddress", addressLocality: site.city, addressCountry: "NG" },
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${url}/#website`,
+        name: site.name,
+        url,
+        publisher: { "@id": `${url}/#organization` },
+        potentialAction: {
+          "@type": "SearchAction",
+          target: { "@type": "EntryPoint", urlTemplate: `${url}/search?q={search_term_string}` },
+          "query-input": "required name=search_term_string",
+        },
+      },
+    ],
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, "\\u003c") }}
+    />
   );
 }

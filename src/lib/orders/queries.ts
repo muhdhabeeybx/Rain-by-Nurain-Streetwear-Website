@@ -190,3 +190,15 @@ export async function getOrderById(id: string) {
   if (error) throw new Error(`Could not load order ${id}: ${error.message}`);
   return toView(data);
 }
+
+/** Why an order is flagged for review, or null when it isn't. Internal to the team. */
+export async function getOrderReview(id: string) {
+  const { data, error } = await createServiceClient()
+    .from("orders")
+    .select("needs_review, review_reason")
+    .eq("id", id)
+    .single();
+
+  if (error) throw new Error(`Could not load order ${id}: ${error.message}`);
+  return data.needs_review ? (data.review_reason ?? "Flagged for review.") : null;
+}

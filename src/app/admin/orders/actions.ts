@@ -5,7 +5,7 @@ import { after } from "next/server";
 import { z } from "zod";
 import { requireAdmin } from "@/lib/admin/auth";
 import { CATALOG_TAG } from "@/lib/catalog";
-import { sendOrderDispatched } from "@/lib/email/order-updates";
+import { notifyStatusChange } from "@/lib/email/notify";
 
 export type OrderActionState = { status: "idle" | "done" | "error"; message?: string };
 
@@ -49,7 +49,8 @@ export async function updateOrderStatus(
     };
   }
 
-  if (input.status === "shipped") after(() => sendOrderDispatched(order.id));
+  // Shipped, delivered, cancelled and refunded orders email the customer.
+  after(() => notifyStatusChange(order.id, input.status));
   // Cancelling or refunding before dispatch puts stock back on sale.
   if (input.status === "cancelled" || input.status === "refunded") updateTag(CATALOG_TAG);
   revalidatePath(`/admin/orders/${input.number}`);

@@ -21,6 +21,10 @@ Paystack · Tailwind CSS 4 · TypeScript.
   read their own orders; admins (profiles with `role = 'admin'`) can manage everything. Server
   code that needs more (placing orders, confirming payments) uses the secret key and lives only in
   server-only modules.
+- **Emails go out on their own.** When a payment is confirmed the customer gets a receipt and the
+  team gets a new-order alert. Marking an order dispatched (or ready for pickup), delivered,
+  cancelled or refunded emails the customer. A payment that doesn't match its order alerts the
+  team instead. Preview them all at `/admin/emails`. See [Email](#email).
 - **Fast pages.** Catalogue reads are cached with `"use cache"` and the `catalog` tag; admin edits
   and new orders invalidate it, so changes show immediately. Product and category pages are
   prerendered; anything personal streams in behind Suspense.
@@ -32,14 +36,16 @@ Money is stored as integer kobo everywhere (₦28,000 = `2800000`).
 ```
 src/
   app/(store)/        Storefront: home, shop, product, checkout, orders, account, help pages
-  app/admin/          Admin: overview, orders, products, delivery settings
+  app/admin/          Admin: overview, orders, products, delivery settings, email previews
   app/api/paystack/   Paystack webhook
   components/         UI primitives (ui/), storefront (store/), admin (admin/), logo (brand/)
   lib/                Data access, checkout rules, Paystack client, email, cart store
+  lib/email/          Email templates, design blocks, and who gets what (notify.ts)
   proxy.ts            Refreshes Supabase sessions on account, admin, checkout and order routes
 supabase/
   migrations/         Schema, row level security, order and payment functions
   seed.sql            Categories, delivery zones and a pickup location
+  templates/          Supabase Auth email (sign-in code), generated from src/lib/email
   tests/              Database tests (run against an in-process Postgres)
 scripts/              Type generation from the migrations
 ```
@@ -62,8 +68,10 @@ You need Node.js 24, a [Supabase](https://supabase.com) project and a
    Then run `supabase/seed.sql` once in the Supabase SQL editor.
 4. **Configure Supabase Auth** (Authentication in the dashboard):
    - URL configuration: set the Site URL to your site's URL.
-   - Email: keep "Confirm email" on. Edit the **Magic Link** template so it sends the 6-digit code,
-     e.g. `Your Rain by Nurain sign-in code is {{ .Token }}`.
+   - Email: keep "Confirm email" on. Under **Emails → Templates**, set both **Confirm signup** (new
+     customers) and **Magic Link** (returning customers) to the subject
+     `Your Rain by Nurain sign-in code` and paste in the body from
+     `supabase/templates/sign-in-code.html`. It is the branded email with the 6-digit code.
    - SMTP: add a custom SMTP provider before launch. Supabase's built-in email is rate-limited and
      only for testing.
 5. **Make yourself an admin:** sign in once at `/account/sign-in`, then run in the SQL editor:
@@ -73,6 +81,32 @@ You need Node.js 24, a [Supabase](https://supabase.com) project and a
 6. **Point Paystack at the webhook:** in Paystack → Settings → API Keys & Webhooks, set the webhook
    URL to `https://<your-domain>/api/paystack/webhook`.
 7. **Run it:** `npm run dev` and open http://localhost:3000.
+
+## Email
+
+Order emails are sent through [Resend](https://resend.com) from the server, after the response, so
+a slow or missing email provider never holds up checkout or the admin. Without `RESEND_API_KEY` and
+`EMAIL_FROM` they are skipped and logged.
+
+| Email                | Goes to  | Sent when                                         |
+| -------------------- | -------- | ------------------------------------------------- |
+| Order confirmed      | Customer | Paystack confirms the payment                     |
+| New order            | RBN team | Paystack confirms the payment                     |
+| Payment needs review | RBN team | A payment's amount or currency doesn't match      |
+| On its way / Ready   | Customer | The order is marked dispatched / ready for pickup |
+| Delivered            | Customer | The order is marked delivered / collected         |
+| Cancelled, Refunded  | Customer | A **paid** order is cancelled or refunded         |
+| Sign-in code         | Customer | Someone signs in (sent by Supabase Auth)          |
+
+- Team alerts go to `ORDER_ALERT_EMAIL` (comma separated), or `site.email` if it isn't set. Replying
+  to an alert replies to the customer; replying to a customer email reaches `site.email`.
+- A note typed when changing an order's status appears in that email.
+- Templates live in `src/lib/email/templates.ts`, built from the blocks in `components.ts`, which
+  follow the site's colours and type. Logos are PNGs in `public/email/` because most email apps
+  don't show SVG.
+- The sign-in template is generated from the same design. After changing the design, run
+  `UPDATE_EMAIL_TEMPLATES=1 npm test -- templates` and paste `supabase/templates/sign-in-code.html`
+  into the Supabase dashboard again.
 
 ## Scripts
 
@@ -103,8 +137,9 @@ After changing a migration, run `npm run db:types` and `npm test`.
 - [ ] Delivery fees and timings confirmed in `/admin/delivery` (the seeded ones are placeholders)
 - [ ] Pickup location address entered, or left inactive
 - [ ] Custom domain connected; `NEXT_PUBLIC_SITE_URL` and the Supabase Site URL updated
-- [ ] Order emails: verify the domain with [Resend](https://resend.com), set `RESEND_API_KEY` and
-      `EMAIL_FROM`
+- [ ] Order emails: verify the domain with [Resend](https://resend.com), set `RESEND_API_KEY`,
+      `EMAIL_FROM` and `ORDER_ALERT_EMAIL`, then place a test order and check both inboxes
+- [ ] Supabase sign-in email templates pasted in (see Getting started, step 4)
 - [ ] Supabase custom SMTP configured for sign-in codes
 - [ ] Paystack live keys set, webhook URL updated, one real low-value test purchase made and
       refunded

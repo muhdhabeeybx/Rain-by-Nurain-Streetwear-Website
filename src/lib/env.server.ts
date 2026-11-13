@@ -9,6 +9,8 @@ const schema = z.object({
   // Optional until a sending domain is verified. Without them, emails are skipped.
   RESEND_API_KEY: z.string().startsWith("re_").optional(),
   EMAIL_FROM: z.string().min(3).optional(),
+  // Where new-order and payment alerts go (comma separated). Defaults to the shop email.
+  ORDER_ALERT_EMAIL: z.string().optional(),
 });
 
 let parsed: z.infer<typeof schema> | undefined;
