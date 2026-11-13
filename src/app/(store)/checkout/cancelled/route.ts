@@ -5,12 +5,14 @@ import {
   recordPaystackPayment,
 } from "@/lib/orders/payments";
 import { verifyTransaction } from "@/lib/paystack";
+import { isPreview } from "@/lib/preview";
 
 /**
  * The customer pressed "Cancel" on the Paystack page. Release the stock right
  * away, unless Paystack says the payment actually went through.
  */
 export async function GET(request: NextRequest) {
+  if (isPreview) return NextResponse.redirect(new URL("/checkout", request.url));
   const reference = request.nextUrl.searchParams.get("reference");
   const order = reference ? await findOrderByReference(reference) : null;
   if (!reference || !order) return NextResponse.redirect(new URL("/checkout", request.url));

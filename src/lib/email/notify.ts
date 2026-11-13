@@ -2,7 +2,7 @@ import "server-only";
 import { site } from "@/config/site";
 import { env } from "@/lib/env";
 import { serverEnv } from "@/lib/env.server";
-import { productImageUrl } from "@/lib/images";
+import { absoluteProductImageUrl } from "@/lib/images";
 import { getOrderById, getOrderReview } from "@/lib/orders/queries";
 import type { OrderStatus } from "@/lib/orders/status";
 import { sendEmail } from "./send";
@@ -29,7 +29,7 @@ export function emailContext(): EmailContext {
     siteUrl,
     // A small rendition through the site's image optimiser, not the original upload.
     imageUrl: (path) =>
-      `${siteUrl}/_next/image?url=${encodeURIComponent(productImageUrl(path))}&w=256&q=75`,
+      `${siteUrl}/_next/image?url=${encodeURIComponent(absoluteProductImageUrl(path))}&w=256&q=75`,
   };
 }
 

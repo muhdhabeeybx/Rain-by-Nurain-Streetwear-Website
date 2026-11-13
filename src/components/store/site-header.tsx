@@ -4,10 +4,20 @@ import { Monogram } from "@/components/brand/logo";
 import { primaryNav } from "@/config/navigation";
 import { site } from "@/config/site";
 import { getCategories } from "@/lib/catalog";
+import { isPreview, PREVIEW_MESSAGE } from "@/lib/preview";
 import { CartButton } from "./cart-button";
 import { MobileMenu } from "./mobile-menu";
 
 export function AnnouncementBar() {
+  if (isPreview) {
+    return (
+      <div className="bg-ink text-paper">
+        <p className="container-page flex h-9 items-center justify-center text-center type-label">
+          {PREVIEW_MESSAGE}
+        </p>
+      </div>
+    );
+  }
   return (
     <div className="bg-ink text-paper">
       <p className="container-page flex h-9 items-center justify-center text-center type-label">

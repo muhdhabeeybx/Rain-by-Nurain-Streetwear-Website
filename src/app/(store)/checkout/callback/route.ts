@@ -5,6 +5,7 @@ import {
   recordPaystackPayment,
 } from "@/lib/orders/payments";
 import { verifyTransaction } from "@/lib/paystack";
+import { isPreview } from "@/lib/preview";
 
 const FAILED = new Set(["failed", "abandoned", "reversed"]);
 
@@ -13,6 +14,7 @@ const FAILED = new Set(["failed", "abandoned", "reversed"]);
  * Paystack directly (never trusting the URL), then show the order.
  */
 export async function GET(request: NextRequest) {
+  if (isPreview) return NextResponse.redirect(new URL("/checkout", request.url));
   const reference =
     request.nextUrl.searchParams.get("reference") ?? request.nextUrl.searchParams.get("trxref");
   const order = reference ? await findOrderByReference(reference) : null;

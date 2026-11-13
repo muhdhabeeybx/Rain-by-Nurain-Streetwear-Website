@@ -2,6 +2,7 @@ import "server-only";
 import { createClient } from "@supabase/supabase-js";
 import { env } from "@/lib/env";
 import { serverEnv } from "@/lib/env.server";
+import { assertDatabase } from "@/lib/preview";
 import type { Database } from "./database.types";
 
 /**
@@ -10,6 +11,7 @@ import type { Database } from "./database.types";
  * payments, and opening a guest's order with its access token.
  */
 export function createServiceClient() {
+  assertDatabase("Orders and payments");
   return createClient<Database>(env.NEXT_PUBLIC_SUPABASE_URL, serverEnv().SUPABASE_SECRET_KEY, {
     auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false },
   });

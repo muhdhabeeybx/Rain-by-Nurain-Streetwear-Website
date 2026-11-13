@@ -3,6 +3,7 @@ import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 import { connection } from "next/server";
 import { env } from "@/lib/env";
+import { assertDatabase } from "@/lib/preview";
 import type { Database } from "./database.types";
 
 /**
@@ -11,6 +12,7 @@ import type { Database } from "./database.types";
  * Action / Route Handler.
  */
 export async function createServerSupabase() {
+  assertDatabase("Signing in");
   // Session checks compare token expiry with the current time, so they belong
   // to the request, never to a prerendered (or per-session prefetched) shell.
   await connection();

@@ -3,6 +3,7 @@ import { Archivo, IBM_Plex_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import { site } from "@/config/site";
 import { env } from "@/lib/env";
+import { isPreview } from "@/lib/preview";
 import "./globals.css";
 
 // Body copy. Downloaded by scripts/fetch-fonts.ts (it can't live in the public repo).
@@ -43,6 +44,7 @@ export const metadata: Metadata = {
     locale: "en_NG",
   },
   twitter: { card: "summary_large_image" },
+  ...(isPreview && { robots: { index: false, follow: false } }),
 };
 
 export const viewport: Viewport = {

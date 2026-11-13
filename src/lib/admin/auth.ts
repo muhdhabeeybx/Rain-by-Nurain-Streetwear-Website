@@ -1,5 +1,6 @@
 import "server-only";
 import { notFound, redirect } from "next/navigation";
+import { isPreview } from "@/lib/preview";
 import { createServerSupabase } from "@/lib/supabase/server";
 
 /**
@@ -7,6 +8,7 @@ import { createServerSupabase } from "@/lib/supabase/server";
  * so row level security still applies to everything it does.
  */
 export async function requireAdmin() {
+  if (isPreview) notFound();
   const supabase = await createServerSupabase();
   const { data } = await supabase.auth.getClaims();
   if (!data?.claims) redirect("/account/sign-in?next=/admin");

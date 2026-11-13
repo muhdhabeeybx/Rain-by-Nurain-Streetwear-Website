@@ -134,16 +134,23 @@ After changing a migration, run `npm run db:types` and `npm test`.
 ## Deploying (Netlify)
 
 `main` deploys to Netlify. `netlify.toml` sets the build command, the `.next` publish directory
-and Node 24. Before the first deploy, add these under **Site configuration → Environment
+and Node 24.
+
+**Preview mode.** With no database configured, the site builds and runs as a preview
+(`src/lib/preview.ts`): the storefront shows a sample catalogue (`src/lib/preview-catalog.ts`)
+photographed in brand imagery, the announcement bar says the shop opens soon, checkout, accounts
+and the admin show an "opens soon" page, and search engines are told not to index anything. No
+environment variables are needed: the site URL falls back to Netlify's own `URL`.
+
+**Going live** means connecting the database. Then set, under **Site configuration → Environment
 variables** (values as in `.env.example`):
 
 - `NEXT_PUBLIC_SITE_URL`: the live URL, e.g. `https://rainbynurain.com`
-- `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`, `SUPABASE_SECRET_KEY`
+- the database variables, which switch preview mode off
 - `PAYSTACK_SECRET_KEY`
 - Optional: `RESEND_API_KEY`, `EMAIL_FROM`, `ORDER_ALERT_EMAIL`
 
-The build reads the catalogue, so the Supabase database must be migrated and seeded first (see
-Getting started). If a build fails, Netlify keeps serving the previous deploy.
+If a build fails, Netlify keeps serving the previous deploy.
 
 ## Before launch
 

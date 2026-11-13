@@ -1,5 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
 import { env } from "@/lib/env";
+import { assertDatabase } from "@/lib/preview";
 import type { Database } from "./database.types";
 
 /**
@@ -7,6 +8,7 @@ import type { Database } from "./database.types";
  * safe to use inside `use cache` functions and in statically rendered pages.
  */
 export function createPublicClient() {
+  assertDatabase("The catalogue");
   return createClient<Database>(
     env.NEXT_PUBLIC_SUPABASE_URL,
     env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY,

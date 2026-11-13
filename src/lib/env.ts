@@ -21,11 +21,17 @@ function url(name: string, value: string | undefined) {
   }
 }
 
+/** Database settings are optional: without them the site runs in preview mode (preview.ts). */
+function optionalUrl(name: string, value: string | undefined) {
+  return value ? url(name, value) : "";
+}
+
 export const env = {
+  // next.config.ts falls back to the host's URL (Netlify's URL) when this isn't set.
   NEXT_PUBLIC_SITE_URL: url("NEXT_PUBLIC_SITE_URL", process.env.NEXT_PUBLIC_SITE_URL),
-  NEXT_PUBLIC_SUPABASE_URL: url("NEXT_PUBLIC_SUPABASE_URL", process.env.NEXT_PUBLIC_SUPABASE_URL),
-  NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: required(
-    "NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY",
-    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY,
+  NEXT_PUBLIC_SUPABASE_URL: optionalUrl(
+    "NEXT_PUBLIC_SUPABASE_URL",
+    process.env.NEXT_PUBLIC_SUPABASE_URL,
   ),
+  NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ?? "",
 } as const;

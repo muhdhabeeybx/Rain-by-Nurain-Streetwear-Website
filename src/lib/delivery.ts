@@ -1,5 +1,7 @@
 import "server-only";
 import { cacheLife, cacheTag } from "next/cache";
+import { isPreview } from "@/lib/preview";
+import { PREVIEW_DELIVERY } from "@/lib/preview-catalog";
 import { createPublicClient } from "@/lib/supabase/public";
 
 export const DELIVERY_TAG = "delivery";
@@ -31,6 +33,7 @@ export async function getDeliveryOptions(): Promise<DeliveryOptions> {
   "use cache";
   cacheLife("hours");
   cacheTag(DELIVERY_TAG);
+  if (isPreview) return PREVIEW_DELIVERY;
 
   const supabase = createPublicClient();
   const [zones, pickup] = await Promise.all([

@@ -1,7 +1,11 @@
 import { type NextRequest, NextResponse } from "next/server";
+import { isPreview } from "@/lib/preview";
 import { updateSession } from "@/lib/supabase/proxy";
 
 export async function proxy(request: NextRequest) {
+  // No accounts in preview mode; the pages themselves explain.
+  if (isPreview) return NextResponse.next();
+
   const { response, isSignedIn } = await updateSession(request);
 
   // Optimistic gate only: data is protected by row level security and

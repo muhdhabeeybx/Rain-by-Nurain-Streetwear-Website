@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { recordPaystackPayment } from "@/lib/orders/payments";
 import { isValidWebhookSignature, transactionSchema } from "@/lib/paystack";
+import { isPreview } from "@/lib/preview";
 import { createServiceClient } from "@/lib/supabase/service";
 
 const eventSchema = z.object({ event: z.string(), data: z.unknown() });
@@ -12,6 +13,7 @@ const eventSchema = z.object({ event: z.string(), data: z.unknown() });
  * Confirms payments even if the customer closes the tab before returning.
  */
 export async function POST(request: Request) {
+  if (isPreview) return new Response("Store not open", { status: 503 });
   const rawBody = await request.text();
   if (!isValidWebhookSignature(rawBody, request.headers.get("x-paystack-signature"))) {
     return new Response("Invalid signature", { status: 401 });

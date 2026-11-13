@@ -6,6 +6,8 @@ import { CATALOG_TAG } from "@/lib/catalog";
 import { type CheckoutField, checkoutSchema } from "@/lib/checkout/schema";
 import { env } from "@/lib/env";
 import { cancelPendingOrder } from "@/lib/orders/payments";
+import { isPreview } from "@/lib/preview";
+import { previewQuote } from "@/lib/preview-catalog";
 import { initializeTransaction } from "@/lib/paystack";
 import { createPublicClient } from "@/lib/supabase/public";
 import { createServerSupabase } from "@/lib/supabase/server";
@@ -30,6 +32,7 @@ export type QuoteLine = {
 export async function quoteCart(variantIds: string[]): Promise<QuoteLine[]> {
   const ids = z.array(z.uuid()).max(20).parse(variantIds);
   if (ids.length === 0) return [];
+  if (isPreview) return previewQuote(ids);
 
   const { data, error } = await createPublicClient()
     .from("product_variants")
@@ -73,6 +76,7 @@ export async function placeOrder(
   _previous: PlaceOrderState,
   formData: FormData,
 ): Promise<PlaceOrderState> {
+  if (isPreview) return { status: "error", message: "Checkout opens soon. This is a preview." };
   const fields = Object.fromEntries(formData) as Record<string, string>;
   const parsed = checkoutSchema.safeParse({ ...fields, items: parseItems(fields.items) });
 

@@ -18,7 +18,7 @@ import { deliveryEstimate, deliveryRange } from "@/lib/checkout/fees";
 import { type DeliveryOptions, getDeliveryOptions } from "@/lib/delivery";
 import { formatNaira } from "@/lib/money";
 import { env } from "@/lib/env";
-import { productImageUrl } from "@/lib/images";
+import { absoluteProductImageUrl } from "@/lib/images";
 import { cn } from "@/lib/utils";
 
 export async function generateMetadata({
@@ -40,7 +40,7 @@ export async function generateMetadata({
     openGraph: {
       title,
       description,
-      images: image ? [{ url: productImageUrl(image.path), alt: image.alt }] : undefined,
+      images: image ? [{ url: absoluteProductImageUrl(image.path), alt: image.alt }] : undefined,
     },
   };
 }
@@ -294,7 +294,7 @@ function ProductJsonLd({ product }: { product: ProductDetail }) {
     "@type": "Product",
     name: product.colorName ? `${product.name} (${product.colorName})` : product.name,
     description: product.description || undefined,
-    image: product.images.map((image) => productImageUrl(image.path)),
+    image: product.images.map((image) => absoluteProductImageUrl(image.path)),
     url,
     color: product.colorName ?? undefined,
     category: product.category.name,

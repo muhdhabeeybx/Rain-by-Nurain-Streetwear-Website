@@ -9,6 +9,7 @@ import { formatNaira } from "@/lib/money";
 import { stateLabel } from "@/lib/nigeria";
 import { getCustomerOrder, getOrderWithToken, type OrderView } from "@/lib/orders/queries";
 import { ORDER_PROGRESS, statusLabel } from "@/lib/orders/status";
+import { isPreview } from "@/lib/preview";
 import { cn } from "@/lib/utils";
 import { ClearBagForOrder, RefreshWhilePending } from "./order-live";
 
@@ -36,6 +37,7 @@ export default function OrderPage({ params, searchParams }: PageProps<"/orders/[
 }
 
 async function OrderLoader({ number, token }: { number: string; token: string | null }) {
+  if (isPreview) notFound();
   const order = token ? await getOrderWithToken(number, token) : await getCustomerOrder(number);
   if (!order) notFound();
   return <OrderDetails order={order} />;

@@ -1,5 +1,7 @@
 import "server-only";
 import { cacheLife, cacheTag } from "next/cache";
+import { isPreview } from "@/lib/preview";
+import * as preview from "@/lib/preview-catalog";
 import { compareSizes } from "@/lib/sizes";
 import type { Database } from "@/lib/supabase/database.types";
 import { createPublicClient } from "@/lib/supabase/public";
@@ -133,6 +135,7 @@ export async function getProducts({
   "use cache";
   cacheLife("minutes");
   cacheTag(CATALOG_TAG);
+  if (isPreview) return preview.previewProducts({ category, sort, limit });
 
   let query = createPublicClient().from("products").select(CARD_SELECT).eq("status", "active");
   if (category) query = query.eq("category.slug", category);
@@ -150,6 +153,7 @@ export async function searchProducts(text: string): Promise<ProductCard[]> {
   "use cache";
   cacheLife("minutes");
   cacheTag(CATALOG_TAG);
+  if (isPreview) return preview.previewSearch(text);
 
   const { data, error } = await createPublicClient()
     .from("products")
@@ -166,6 +170,7 @@ export async function getProduct(slug: string): Promise<ProductDetail | null> {
   "use cache";
   cacheLife("minutes");
   cacheTag(CATALOG_TAG);
+  if (isPreview) return preview.previewProduct(slug);
 
   const supabase = createPublicClient();
   const { data: row, error } = await supabase
@@ -217,6 +222,7 @@ export async function getRelatedProducts(
   "use cache";
   cacheLife("minutes");
   cacheTag(CATALOG_TAG);
+  if (isPreview) return preview.previewRelated(product, limit);
 
   const { data, error } = await createPublicClient()
     .from("products")
@@ -237,6 +243,7 @@ export async function getCategories(): Promise<Category[]> {
   "use cache";
   cacheLife("minutes");
   cacheTag(CATALOG_TAG);
+  if (isPreview) return preview.previewCategories();
 
   const { data, error } = await createPublicClient()
     .from("categories")
@@ -260,6 +267,7 @@ export async function getProductSlugs(): Promise<{ slug: string; updatedAt: stri
   "use cache";
   cacheLife("hours");
   cacheTag(CATALOG_TAG);
+  if (isPreview) return preview.previewProductSlugs();
 
   const { data, error } = await createPublicClient()
     .from("products")

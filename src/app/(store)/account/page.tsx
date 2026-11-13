@@ -5,7 +5,9 @@ import { Suspense } from "react";
 import { Button } from "@/components/ui/button";
 import { formatNaira } from "@/lib/money";
 import { statusLabel } from "@/lib/orders/status";
+import { isPreview } from "@/lib/preview";
 import { createServerSupabase } from "@/lib/supabase/server";
+import { AccountsSoon } from "./accounts-soon";
 import { signOut } from "./actions";
 import { ProfileForm } from "./profile-form";
 
@@ -20,6 +22,7 @@ const dateFormat = new Intl.DateTimeFormat("en-NG", {
 });
 
 export default function AccountPage() {
+  if (isPreview) return <AccountsSoon />;
   return (
     <div className="container-page pt-10 pb-24 md:pt-16">
       <Suspense fallback={<div aria-hidden className="h-96 animate-pulse bg-mist" />}>

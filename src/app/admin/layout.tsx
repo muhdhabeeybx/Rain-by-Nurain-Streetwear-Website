@@ -3,7 +3,9 @@ import Link from "next/link";
 import { Suspense } from "react";
 import { Monogram } from "@/components/brand/logo";
 import { AdminNav } from "@/components/admin/admin-nav";
+import { PreviewNotice } from "@/components/store/preview-notice";
 import { requireAdmin } from "@/lib/admin/auth";
+import { isPreview } from "@/lib/preview";
 
 export const metadata: Metadata = {
   title: { default: "Admin", template: "%s · Admin" },
@@ -42,6 +44,14 @@ export default function AdminLayout({ children }: LayoutProps<"/admin">) {
 }
 
 async function AdminGate({ children }: { children: React.ReactNode }) {
+  if (isPreview) {
+    return (
+      <PreviewNotice title="Admin opens with the shop">
+        Orders, products and delivery settings are managed here once the store&apos;s database is
+        connected.
+      </PreviewNotice>
+    );
+  }
   await requireAdmin();
   return children;
 }

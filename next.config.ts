@@ -8,6 +8,11 @@ const isLocalSupabase =
   supabaseUrl !== null && ["127.0.0.1", "localhost"].includes(supabaseUrl.hostname);
 
 const nextConfig: NextConfig = {
+  env: {
+    // Netlify sets URL to the site's address, so a deploy works before this is configured.
+    NEXT_PUBLIC_SITE_URL:
+      process.env.NEXT_PUBLIC_SITE_URL || process.env.URL || "http://localhost:3000",
+  },
   cacheComponents: true,
   partialPrefetching: true,
   reactCompiler: true,

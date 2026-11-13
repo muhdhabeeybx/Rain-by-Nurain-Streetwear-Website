@@ -3,6 +3,7 @@
 import type { Route } from "next";
 import { redirect } from "next/navigation";
 import { z } from "zod";
+import { isPreview } from "@/lib/preview";
 import { safeNextPath } from "@/lib/redirects";
 import { normalisePhone } from "@/lib/checkout/schema";
 import { createServerSupabase } from "@/lib/supabase/server";
@@ -14,6 +15,7 @@ export async function sendSignInCode(
   _previous: SignInState,
   formData: FormData,
 ): Promise<SignInState> {
+  if (isPreview) return { step: "email", error: "Accounts open with the shop." };
   const email = z.email().safeParse(
     String(formData.get("email") ?? "")
       .trim()
