@@ -139,8 +139,11 @@ and Node 24.
 
 **Preview mode.** With no database configured, the site builds and runs as a preview
 (`src/lib/preview.ts`): the storefront shows a sample catalogue (`src/lib/preview-catalog.ts`)
-photographed in brand imagery, the announcement bar says the shop opens soon, checkout, accounts
-and the admin show an "opens soon" page, and search engines are told not to index anything. No
+photographed in brand imagery, and the announcement bar says the shop opens soon. Checkout works
+up to the payment step, then shows a sample confirmation instead of Paystack. The admin shows
+sample orders and products (`src/lib/preview-data.ts`, served by `src/lib/admin/preview-client.ts`)
+and refuses to save. Accounts show an "opens soon" page, and search engines are told not to index
+anything. No
 environment variables are needed: the site URL falls back to Netlify's own `URL`.
 
 **Going live** means connecting the database. Then set, under **Site configuration → Environment

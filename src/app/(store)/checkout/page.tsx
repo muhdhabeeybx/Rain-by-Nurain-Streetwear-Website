@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import { PreviewNotice } from "@/components/store/preview-notice";
 import { getDeliveryOptions } from "@/lib/delivery";
 import { isPreview } from "@/lib/preview";
 import { createServerSupabase } from "@/lib/supabase/server";
@@ -18,16 +17,6 @@ const NOTICES: Record<string, string> = {
 };
 
 export default function CheckoutPage({ searchParams }: PageProps<"/checkout">) {
-  if (isPreview) {
-    return (
-      <PreviewNotice title="Checkout opens soon">
-        You&apos;re looking at a preview of the new Rain by Nurain store. The pieces here are
-        samples, so nothing can be bought yet. Follow us on Instagram to hear the moment the shop
-        opens.
-      </PreviewNotice>
-    );
-  }
-
   return (
     <div className="container-page pt-8 pb-24 md:pt-12">
       <h1 className="type-display text-display-md">Checkout</h1>
@@ -42,9 +31,21 @@ export default function CheckoutPage({ searchParams }: PageProps<"/checkout">) {
   );
 }
 
+const PREVIEW_NOTICE =
+  "This is a preview. You won't be charged: placing an order shows a sample confirmation instead of opening Paystack.";
+
 async function CheckoutLoader({ notice }: { notice: string | null }) {
-  const [options, defaults] = await Promise.all([getDeliveryOptions(), getCheckoutDefaults()]);
-  return <CheckoutForm options={options} defaults={defaults} notice={notice} />;
+  const [options, defaults] = await Promise.all([
+    getDeliveryOptions(),
+    isPreview ? { email: "", fullName: "", phone: "" } : getCheckoutDefaults(),
+  ]);
+  return (
+    <CheckoutForm
+      options={options}
+      defaults={defaults}
+      notice={notice ?? (isPreview ? PREVIEW_NOTICE : null)}
+    />
+  );
 }
 
 /** Pre-fills contact details for signed-in customers. */

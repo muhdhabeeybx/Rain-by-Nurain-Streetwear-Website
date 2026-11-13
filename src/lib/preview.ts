@@ -13,6 +13,9 @@ export const isPreview =
 
 export const PREVIEW_MESSAGE = "Preview · The shop opens soon";
 
+/** What admin forms say when asked to save in preview mode. */
+export const PREVIEW_SAVE_MESSAGE = "This is a preview: changes aren't saved.";
+
 /** Thrown by anything that needs the database, so a missed guard fails loudly. */
 export function assertDatabase(what: string) {
   if (isPreview)

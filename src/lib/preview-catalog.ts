@@ -15,9 +15,9 @@ import type {
 } from "./catalog";
 
 /** Deterministic UUIDs: the cart and checkout validate ids as UUIDs. */
-const uuid = (n: number) => `00000000-0000-4000-8000-${n.toString(16).padStart(12, "0")}`;
+export const uuid = (n: number) => `00000000-0000-4000-8000-${n.toString(16).padStart(12, "0")}`;
 
-const CATEGORIES = [
+export const CATEGORIES = [
   { slug: "tees", name: "T-Shirts" },
   { slug: "polos", name: "Polos" },
   { slug: "hoodies", name: "Hoodies & Sweats" },
@@ -28,7 +28,7 @@ const CATEGORIES = [
 
 type CategorySlug = (typeof CATEGORIES)[number]["slug"];
 
-type Sample = {
+export type Sample = {
   slug: string;
   name: string;
   styleCode?: string;
@@ -47,7 +47,7 @@ type Sample = {
 
 const NAIRA = 100;
 
-const SAMPLES: Sample[] = [
+export const SAMPLES: Sample[] = [
   {
     slug: "three-ps-jersey-black",
     name: "Three P's Jersey",
@@ -152,14 +152,14 @@ const SAMPLES: Sample[] = [
   },
 ];
 
-const PUBLISHED = "2026-11-01T09:00:00.000Z";
+export const PUBLISHED = "2026-11-01T09:00:00.000Z";
 
 function categoryOf(sample: Sample) {
   const category = CATEGORIES.find((candidate) => candidate.slug === sample.category)!;
   return { slug: category.slug, name: category.name };
 }
 
-function variantsOf(sample: Sample, index: number): ProductVariant[] {
+export function variantsOf(sample: Sample, index: number): ProductVariant[] {
   return Object.entries(sample.stock)
     .map(([size, stock], sizeIndex) => ({ id: uuid(1000 + index * 20 + sizeIndex), size, stock }))
     .toSorted((a, b) => compareSizes(a.size, b.size));

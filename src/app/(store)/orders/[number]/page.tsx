@@ -37,10 +37,19 @@ export default function OrderPage({ params, searchParams }: PageProps<"/orders/[
 }
 
 async function OrderLoader({ number, token }: { number: string; token: string | null }) {
-  if (isPreview) notFound();
+  if (isPreview && !token) notFound();
   const order = token ? await getOrderWithToken(number, token) : await getCustomerOrder(number);
   if (!order) notFound();
-  return <OrderDetails order={order} />;
+  return (
+    <>
+      {isPreview && (
+        <p className="mb-10 border border-ink bg-ink px-4 py-3 type-label text-paper">
+          Preview · A sample order. Nothing was charged.
+        </p>
+      )}
+      <OrderDetails order={order} />
+    </>
+  );
 }
 
 function headline(order: OrderView) {

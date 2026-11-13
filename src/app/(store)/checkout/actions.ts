@@ -8,6 +8,7 @@ import { env } from "@/lib/env";
 import { cancelPendingOrder } from "@/lib/orders/payments";
 import { isPreview } from "@/lib/preview";
 import { previewQuote } from "@/lib/preview-catalog";
+import { PREVIEW_PLACED_ORDER, previewTables } from "@/lib/preview-data";
 import { initializeTransaction } from "@/lib/paystack";
 import { createPublicClient } from "@/lib/supabase/public";
 import { createServerSupabase } from "@/lib/supabase/server";
@@ -76,7 +77,6 @@ export async function placeOrder(
   _previous: PlaceOrderState,
   formData: FormData,
 ): Promise<PlaceOrderState> {
-  if (isPreview) return { status: "error", message: "Checkout opens soon. This is a preview." };
   const fields = Object.fromEntries(formData) as Record<string, string>;
   const parsed = checkoutSchema.safeParse({ ...fields, items: parseItems(fields.items) });
 
@@ -90,6 +90,16 @@ export async function placeOrder(
     return { status: "error", message: "Please check the highlighted details.", fieldErrors };
   }
   const input = parsed.data;
+
+  // Preview: no order, no payment. Show the sample confirmation instead.
+  if (isPreview) {
+    const sample = previewTables().orders.find((order) => order.number === PREVIEW_PLACED_ORDER)!;
+    return {
+      status: "redirect",
+      url: `/orders/${sample.number}?token=${sample.access_token}&placed=1`,
+      orderNumber: sample.number,
+    };
+  }
 
   // Attach the order to the customer's account when they are signed in.
   const { data: auth } = await (await createServerSupabase()).auth.getClaims();

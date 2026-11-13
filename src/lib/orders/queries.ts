@@ -1,5 +1,8 @@
 import "server-only";
+import { connection } from "next/server";
 import { z } from "zod";
+import { isPreview } from "@/lib/preview";
+import { previewTables } from "@/lib/preview-data";
 import { createServerSupabase } from "@/lib/supabase/server";
 import { createServiceClient } from "@/lib/supabase/service";
 import type { Fulfillment, OrderStatus } from "./status";
@@ -152,6 +155,14 @@ const ORDER_NUMBER = /^RBN-\d+$/;
 /** A guest's order, opened with the private token from their confirmation link. */
 export async function getOrderWithToken(number: string, token: string) {
   if (!ORDER_NUMBER.test(number) || !z.uuid().safeParse(token).success) return null;
+  if (isPreview) {
+    // Sample order times follow the clock, so this belongs to the request.
+    await connection();
+    const sample = previewTables().orders.find(
+      (order) => order.number === number && order.access_token === token,
+    );
+    return sample ? toView(sample as unknown as OrderRow) : null;
+  }
 
   const { data, error } = await createServiceClient()
     .from("orders")

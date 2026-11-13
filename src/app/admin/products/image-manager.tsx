@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useRef, useState, useTransition } from "react";
 import { ProductImage } from "@/components/store/product-image";
 import { Button } from "@/components/ui/button";
+import { isPreview, PREVIEW_SAVE_MESSAGE } from "@/lib/preview";
 import { createBrowserSupabase } from "@/lib/supabase/browser";
 import { addProductImage, deleteImage, moveImage, updateImageAlt } from "./actions";
 
@@ -43,6 +44,11 @@ export function ImageManager({
 
   const upload = async (files: FileList) => {
     setError(null);
+    if (isPreview) {
+      setError(PREVIEW_SAVE_MESSAGE);
+      if (input.current) input.current.value = "";
+      return;
+    }
     const supabase = createBrowserSupabase();
     for (const [index, file] of [...files].entries()) {
       if (!ACCEPTED.includes(file.type)) {
